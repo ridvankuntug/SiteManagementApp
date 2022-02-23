@@ -11,7 +11,9 @@ namespace SiteManagementDomain.FluentApiConfiguration
             modelBuilder.HasKey(d => d.DebtId);
             modelBuilder.Property(d => d.DebtBill).IsRequired().HasMaxLength(7);
             modelBuilder.Property(d => d.DebtDue).IsRequired().HasMaxLength(7);
-            modelBuilder.Property(d => d.DebtPeriod).IsRequired().HasMaxLength(7);
+            modelBuilder.Property(d => d.DebtYear).IsRequired().HasMaxLength(4);
+            modelBuilder.Property(d => d.DebtMonth).IsRequired().HasMaxLength(2);
+            modelBuilder.Property(d => d.IsPaid).IsRequired();
 
 
             modelBuilder.HasOne(w => w.User).WithMany(bw => bw.Debt).HasForeignKey(w => w.User_Id);

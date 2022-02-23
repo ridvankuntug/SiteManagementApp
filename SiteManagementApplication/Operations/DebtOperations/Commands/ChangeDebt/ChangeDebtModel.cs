@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SiteManagementApplication.Operations.DebtOperations.Commands.AddDebt
+namespace SiteManagementApplication.Operations.DebtOperations.Commands.ChangeDebt
 {
-    public class AddDebtModel
+    public class ChangeDebtModel
     {
         public float DebtBill { get; set; }
         public float DebtDue { get; set; }
         public int DebtYear { get; set; }
         public int DebtMonth { get; set; }
-        public bool IsPaid { get; set; } = false;
-
-        public int User_Id { get; set; }
+        public bool IsPaid { get; set; }
 
     }
 }

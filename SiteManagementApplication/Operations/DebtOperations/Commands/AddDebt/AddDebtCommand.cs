@@ -25,7 +25,8 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.AddDebt
         public void Handle()
         {
             var debt = _dataBase.Debts.SingleOrDefault(x =>
-                x.DebtPeriod == Model.DebtPeriod &&
+                x.DebtYear == Model.DebtYear &&
+                x.DebtMonth == Model.DebtMonth &&
                 x.User_Id == Model.User_Id);
 
             if (debt is not null)

@@ -2,6 +2,8 @@
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.AddApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.ChangeApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Queries.GetApatment;
+using SiteManagementApplication.Operations.DebtOperations.Commands.AddDebt;
+using SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt;
 using SiteManagementApplication.Operations.UserOperations.Commands.AddUser;
 using SiteManagementApplication.Operations.UserOperations.Queries.GetUser;
 using SiteManagementDomain.Entities;
@@ -24,8 +26,8 @@ namespace SiteManagementApplication.Mappings
             CreateMap<User, GetUserModel>();
 
             //Debt haritalamaları
-            //CreateMap<AddDebtModel, Debt>();
-            //CreateMap<Debt, GetDebtModel>();
+            CreateMap<AddDebtModel, Debt>();
+            CreateMap<Debt, GetDebtModel>();
 
         }
     }
