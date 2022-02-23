@@ -10,12 +10,13 @@ namespace SiteManagementDomain.FluentApiConfiguration
         {
             modelBuilder.HasKey(a => a.Id);
 
-            modelBuilder.Property(u => u.UserName).IsRequired().HasMaxLength(20);
-            modelBuilder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(20);
+            modelBuilder.Property(u => u.UserName).IsRequired().HasMaxLength(30);
+            modelBuilder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(50);
             modelBuilder.Property(u => u.UserTc).IsRequired().HasMaxLength(11);
-            modelBuilder.Property(u => u.Email).IsRequired().HasMaxLength(20);
+            modelBuilder.Property(u => u.Email).IsRequired().HasMaxLength(30);
             modelBuilder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(10);
             modelBuilder.Property(u => u.UserVehicle).IsRequired(false).HasMaxLength(20);
+            modelBuilder.Property(u => u.IsAdmin).IsRequired();
 
             modelBuilder.Ignore(u => u.Apartment);
 

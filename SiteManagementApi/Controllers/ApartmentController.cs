@@ -108,7 +108,7 @@ namespace SiteManagementApi.Controllers
         {
             try
             {
-                ChangeApartmentCommand command = new ChangeApartmentCommand(_dataBase, _mapper);
+                ChangeApartmentCommand command = new ChangeApartmentCommand(_dataBase);
                 command.newApartmentBlock = block;
                 command.newApartmentFloor = floor;
                 command.newApartmentNo = no;

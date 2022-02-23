@@ -17,8 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Operations\UserOperations\Commands\AddUser\" />
-    <Folder Include="Operations\UserOperations\Commands\ChangeUser\" />
     <Folder Include="Operations\UserOperations\Commands\DeleteUser\" />
   </ItemGroup>
 

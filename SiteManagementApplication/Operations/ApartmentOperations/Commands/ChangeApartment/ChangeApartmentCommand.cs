@@ -7,7 +7,6 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
 {
     public class ChangeApartmentCommand
     {
-
         public ChangeApartmentModel Model { get; set; }
 
         private readonly ApplicationDbContext _dataBase;
@@ -16,7 +15,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
         public int newApartmentFloor;
         public int newApartmentNo;
 
-        public ChangeApartmentCommand(ApplicationDbContext dbContext, IMapper mapper)
+        public ChangeApartmentCommand(ApplicationDbContext dbContext)
         {
             _dataBase = dbContext;
         }

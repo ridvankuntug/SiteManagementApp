@@ -4,6 +4,8 @@ using SiteManagementInfrastructure.DatabaseContext;
 using SiteManagementApplication.Operations.UserOperations.Queries.GetUser;
 using System;
 using FluentValidation;
+using SiteManagementApplication.Operations.UserOperations.Commands.AddUser;
+using SiteManagementApplication.Operations.UserOperations.Commands.ChangeUser;
 
 namespace SiteManagementApi.Controllers
 {
@@ -72,6 +74,45 @@ namespace SiteManagementApi.Controllers
 
                 return Ok(genreObj);
 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AddUser")]
+        public IActionResult AddUser([FromBody] AddUserModel newUser)
+        {
+            try
+            {
+                AddUserCommand addUser = new AddUserCommand(_dataBase, _mapper);
+                AddUserValidator validationRules = new AddUserValidator();
+
+                addUser.Model = newUser;
+                validationRules.ValidateAndThrow(addUser);
+                addUser.Handle();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("ChangeUserBy/{id}")]
+        public IActionResult ChangeUser(int id, [FromBody] ChangeUserModel newApartment)
+        {
+            try
+            {
+                ChangeUserCommand command = new ChangeUserCommand(_dataBase);
+                command.newUserId = id;
+
+                command.Model = newApartment;
+                ChangeUserValidator validator = new ChangeUserValidator();
+                validator.ValidateAndThrow(command);
+                command.Handle();
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -2,6 +2,7 @@
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.AddApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.ChangeApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Queries.GetApatment;
+using SiteManagementApplication.Operations.UserOperations.Commands.AddUser;
 using SiteManagementApplication.Operations.UserOperations.Queries.GetUser;
 using SiteManagementDomain.Entities;
 
@@ -19,7 +20,9 @@ namespace SiteManagementApplication.Mappings
                 opt => opt.MapFrom(src => src.User.Id > 1 ? "Ev Boş" : src.User.UserName))*/;
 
             //Users haritalamaları
+            CreateMap<AddUserModel, User>();
             CreateMap<User, GetUserModel>();
+
         }
     }
 }
