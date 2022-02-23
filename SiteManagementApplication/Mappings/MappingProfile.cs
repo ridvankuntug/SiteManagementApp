@@ -23,6 +23,10 @@ namespace SiteManagementApplication.Mappings
             CreateMap<AddUserModel, User>();
             CreateMap<User, GetUserModel>();
 
+            //Debt haritalamaları
+            //CreateMap<AddDebtModel, Debt>();
+            //CreateMap<Debt, GetDebtModel>();
+
         }
     }
 }

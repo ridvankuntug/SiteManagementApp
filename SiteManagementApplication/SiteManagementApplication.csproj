@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Operations\DebtOperations\Commands\ChangeDebt\" />
+    <Folder Include="Operations\DebtOperations\Commands\DelteDebt\" />
+  </ItemGroup>
+
 </Project>

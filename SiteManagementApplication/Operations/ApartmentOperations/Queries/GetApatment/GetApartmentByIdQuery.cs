@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using SiteManagementApplication.Operations.UserOperations.Queries.GetUser;
 using SiteManagementInfrastructure.DatabaseContext;
 using System;
 using System.Linq;
@@ -30,6 +32,24 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
             }
             else
             {
+                //Burada dairede kiin oturduğu bilgisini çekip OwnerName içine atıyoruz
+                if (apartment.User_Id is not null)
+                {
+                    GetUserByIdQuery query = new GetUserByIdQuery(_dataBase, _mapper);
+                    query.newUserId = (int)apartment.User_Id;
+                    GetUserByIdValidator validator = new GetUserByIdValidator();
+                    validator.ValidateAndThrow(query);
+
+
+                    apartment.OwnerName
+                        =
+                    query.Handle().UserName;
+                }
+                else
+                {
+                    apartment.OwnerName = "Daire Boş";
+                }
+
                 GetApartmentModel getApartmentModel = _mapper.Map<GetApartmentModel>(apartment);
                 return getApartmentModel;
             }

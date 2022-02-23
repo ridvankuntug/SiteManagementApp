@@ -9,6 +9,9 @@ namespace SiteManagementDomain.FluentApiConfiguration
         public void Configure(EntityTypeBuilder<User> modelBuilder)
         {
             modelBuilder.HasKey(a => a.Id);
+            modelBuilder.HasIndex(u => u.UserTc).IsUnique();
+            modelBuilder.HasIndex(u => u.Email).IsUnique();
+            modelBuilder.HasIndex(u => u.PhoneNumber).IsUnique();
 
             modelBuilder.Property(u => u.UserName).IsRequired().HasMaxLength(30);
             modelBuilder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(50);

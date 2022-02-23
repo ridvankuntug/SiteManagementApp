@@ -11,12 +11,6 @@ namespace SiteManagementDomain.Entities
         public float DebtDue { get; set; }
         public DateTime DebtPeriod { get; set; }
 
-        [Ignore]
-        [NotMapped]
-        public float DebtTotal
-        {
-            get { return DebtBill + DebtDue; }
-        }
 
         public int User_Id { get; set; }
         public User User { get; set; }
