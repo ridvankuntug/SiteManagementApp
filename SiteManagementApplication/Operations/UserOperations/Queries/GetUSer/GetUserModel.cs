@@ -1,4 +1,4 @@
-﻿namespace SiteManagementApplication.Operations.UserOperations.Queries.GetUSer
+﻿namespace SiteManagementApplication.Operations.UserOperations.Queries.GetUser
 {
     public class GetUserModel
     {
@@ -6,12 +6,6 @@
         public long UserTc { get; set; }
         public string UserVehicle { get; set; }
 
-
-        //TODO: get apartment içine get username ekle
-
-
-
-
-
+        public string Apartment { get; set; }
     }
 }

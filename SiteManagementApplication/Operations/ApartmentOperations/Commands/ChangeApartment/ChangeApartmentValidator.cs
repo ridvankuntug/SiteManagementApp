@@ -16,7 +16,6 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
             RuleFor(c => c.newApartmentNo).NotNull().GreaterThanOrEqualTo(1).LessThanOrEqualTo(999);
 
             RuleFor(c => c.Model.ApartmentType).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 3);
-            //RuleFor(c => c.Model.User_Id);
         }
     }
 }

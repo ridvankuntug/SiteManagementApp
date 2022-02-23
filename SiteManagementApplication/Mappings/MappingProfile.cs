@@ -2,6 +2,7 @@
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.AddApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.ChangeApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Queries.GetApatment;
+using SiteManagementApplication.Operations.UserOperations.Queries.GetUser;
 using SiteManagementDomain.Entities;
 
 namespace SiteManagementApplication.Mappings
@@ -10,12 +11,15 @@ namespace SiteManagementApplication.Mappings
     {
         public MappingProfile()
         {
+            //Apartments haritalamaları
             CreateMap<AddApartmentModel, Apartment>();
 
             CreateMap<Apartment, GetApartmentModel>()
                 /*.ForMember(dest => dest.OwnerName, 
                 opt => opt.MapFrom(src => src.User.Id > 1 ? "Ev Boş" : src.User.UserName))*/;
 
+            //Users haritalamaları
+            CreateMap<User, GetUserModel>();
         }
     }
 }
