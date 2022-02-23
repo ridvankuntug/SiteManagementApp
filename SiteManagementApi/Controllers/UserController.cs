@@ -6,6 +6,7 @@ using System;
 using FluentValidation;
 using SiteManagementApplication.Operations.UserOperations.Commands.AddUser;
 using SiteManagementApplication.Operations.UserOperations.Commands.ChangeUser;
+using SiteManagementApplication.Operations.UserOperations.Commands.DeleteUser;
 
 namespace SiteManagementApi.Controllers
 {
@@ -110,6 +111,25 @@ namespace SiteManagementApi.Controllers
 
                 command.Model = newApartment;
                 ChangeUserValidator validator = new ChangeUserValidator();
+                validator.ValidateAndThrow(command);
+                command.Handle();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("DeleteUserBy/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            try
+            {
+                DeleteUserCommand command = new DeleteUserCommand(_dataBase);
+                command.newUserId = id;
+
+                DeleteUserValidator validator = new DeleteUserValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
                 return Ok();
