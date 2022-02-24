@@ -26,7 +26,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Queries.GetUser
         public List<GetUserModel> Handle()
         {
             var user = from e in _dataBase.Users
-                       where EF.Functions.Like(e.UserName, "%" + newUserName + "%")
+                       where EF.Functions.Like(e.UserFullName, "%" + newUserName + "%")
                        select e;
 
             if (user is not null)

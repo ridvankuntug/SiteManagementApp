@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using SiteManagementDomain.Entities;
 using SiteManagementInfrastructure.DatabaseContext;
 using System;
@@ -24,20 +25,23 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.AddUser
 
         public void Handle()
         {
-            var user = _dataBase.Users.SingleOrDefault(x =>
+            var user = _dataBase.Users.FirstOrDefault(x =>
                 x.UserTc == Model.UserTc ||
                 x.Email == Model.Email ||
                 x.PhoneNumber == Model.PhoneNumber);
 
-            if (user is not null)
+            if (user is null)
             {
-                throw new InvalidOperationException("Bilgiler başka kullanıcı ile çakışıyor.");
-            }
-            else
-            {
+                PasswordHasher<string> pw = new PasswordHasher<string>();
+                Model.PasswordHash = pw.HashPassword(Model.UserName, Model.PasswordHash);
+
                 user = _mapper.Map<User>(Model);
                 _dataBase.Users.Add(user);
                 _dataBase.SaveChanges();
+            }
+            else
+            {
+                throw new InvalidOperationException("Bilgiler başka kullanıcı ile çakışıyor.");
             }
 
         }

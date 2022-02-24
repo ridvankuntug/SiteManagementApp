@@ -16,11 +16,11 @@ namespace SiteManagementDomain.FluentApiConfiguration
             modelBuilder.Property(a => a.ApartmentNo).IsRequired().HasMaxLength(3);
             modelBuilder.Property(a => a.ApartmentType).IsRequired().HasMaxLength(3);
 
-            modelBuilder.Ignore(a => a.OwnerName);
-
-            modelBuilder.HasIndex(u => u.User_Id).IsUnique()
-                .Metadata.SetAnnotation(RelationalAnnotationNames.Filter, null);
+            /*modelBuilder.HasIndex(u => u.User_Id).IsUnique()
+                .Metadata.SetAnnotation(RelationalAnnotationNames.Filter, null);*/
             modelBuilder.Property(a => a.User_Id).IsRequired(false);
+
+            modelBuilder.Ignore(a => a.OwnerName);
 
             modelBuilder.Ignore(a => a.User);
             //modelBuilder.HasOne(a => a.User)

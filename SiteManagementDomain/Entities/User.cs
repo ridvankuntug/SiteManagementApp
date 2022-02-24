@@ -7,7 +7,7 @@ namespace SiteManagementDomain.Entities
 {
     public class User : IdentityUser<int>
     {
-        public override string UserName { get; set; }
+        public string UserFullName { get; set; }
         public long UserTc { get; set; }
         public string UserVehicle { get; set; }
         public bool IsAdmin { get; set; } = false;

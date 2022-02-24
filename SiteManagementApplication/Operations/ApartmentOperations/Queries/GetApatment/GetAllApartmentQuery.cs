@@ -38,15 +38,15 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
                     {
                         apartmentList.Where(a => a.ApartmentBlock == ap.ApartmentBlock
                             && a.ApartmentFloor == ap.ApartmentFloor
-                            && a.ApartmentNo == ap.ApartmentNo).SingleOrDefault().OwnerName
+                            && a.ApartmentNo == ap.ApartmentNo).FirstOrDefault().OwnerName
                         =
-                        userObj.Where(a => a.Id == ap.User_Id).FirstOrDefault().UserName;
+                        userObj.Where(a => a.Id == ap.User_Id).FirstOrDefault().UserFullName;
                     }
                     else
                     {
                         apartmentList.Where(a => a.ApartmentBlock == ap.ApartmentBlock
                         && a.ApartmentFloor == ap.ApartmentFloor
-                        && a.ApartmentNo == ap.ApartmentNo).SingleOrDefault().OwnerName
+                        && a.ApartmentNo == ap.ApartmentNo).FirstOrDefault().OwnerName
                         = "Daire Boş";
                     }
                 }

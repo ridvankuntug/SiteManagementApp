@@ -25,7 +25,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.ChangeDeb
         {
             var debt = _dataBase.Debts
                 .Where(x => x.DebtId == newDebtId)
-                .SingleOrDefault();
+                .FirstOrDefault();
 
             if (debt is not null)
             {

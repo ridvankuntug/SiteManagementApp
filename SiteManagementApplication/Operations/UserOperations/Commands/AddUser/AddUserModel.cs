@@ -9,6 +9,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.AddUser
     public class AddUserModel
     {
         public string UserName { get; set; }
+        public string UserFullName { get; set; }
         public long UserTc { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }

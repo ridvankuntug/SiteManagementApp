@@ -24,7 +24,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
         {
             var apartment = _dataBase.Apartments
                 .Where(x => x.ApartmentBlock == newApartmentBlock && x.ApartmentFloor == newApartmentFloor && x.ApartmentNo == newApartmentNo)
-                .SingleOrDefault();
+                .FirstOrDefault();
 
             if (apartment is not null)
             {

@@ -24,7 +24,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
 
         public GetApartmentModel Handle()
         {
-            var apartment = _dataBase.Apartments/*.Include(g => g.User)*/.Where(x => x.ApartmentId == newApartmentId).SingleOrDefault();
+            var apartment = _dataBase.Apartments/*.Include(g => g.User)*/.Where(x => x.ApartmentId == newApartmentId).FirstOrDefault();
 
             if (apartment is null)
             {
@@ -32,6 +32,8 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
             }
             else
             {
+                GetApartmentModel getApartmentModel = _mapper.Map<GetApartmentModel>(apartment);
+
                 //Burada dairede kiin oturduğu bilgisini çekip OwnerName içine atıyoruz
                 if (apartment.User_Id is not null)
                 {
@@ -41,16 +43,15 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
                     validator.ValidateAndThrow(query);
 
 
-                    apartment.OwnerName
+                    getApartmentModel.OwnerName
                         =
-                    query.Handle().UserName;
+                    query.Handle().UserFullName;
                 }
                 else
                 {
-                    apartment.OwnerName = "Daire Boş";
+                    getApartmentModel.OwnerName = "Daire Boş";
                 }
 
-                GetApartmentModel getApartmentModel = _mapper.Map<GetApartmentModel>(apartment);
                 return getApartmentModel;
             }
         }

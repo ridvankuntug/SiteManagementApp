@@ -29,7 +29,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
         {
             var apartment = _dataBase.Apartments/*.Include(g => g.User)*/
                 .Where(x => x.ApartmentBlock == newApartmentBlock && x.ApartmentFloor == newApartmentFloor && x.ApartmentNo == newApartmentNo)
-                .SingleOrDefault();
+                .FirstOrDefault();
 
 
             if (apartment is null)
@@ -48,7 +48,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
 
                     apartment.OwnerName
                         =
-                    query.Handle().UserName;
+                    query.Handle().UserFullName;
                 }
                 else
                 {

@@ -24,7 +24,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Queries.GetUser
 
         public GetUserModel Handle()
         {
-            var user = _dataBase.Users.SingleOrDefault(u => u.Id == newUserId);
+            var user = _dataBase.Users.FirstOrDefault(u => u.Id == newUserId);
 
             if(user is not null)
             {

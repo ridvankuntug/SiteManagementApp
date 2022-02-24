@@ -49,9 +49,6 @@ namespace SiteManagementInfrastructure.Migrations
 
                     b.HasKey("ApartmentId");
 
-                    b.HasIndex("User_Id")
-                        .IsUnique();
-
                     b.ToTable("Apartments");
                 });
 
@@ -101,13 +98,16 @@ namespace SiteManagementInfrastructure.Migrations
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("MessageEditTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("MessageSendTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("MessageText")
                         .IsRequired()
                         .HasMaxLength(999)
                         .HasColumnType("nvarchar(999)");
-
-                    b.Property<DateTime>("MessageTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("Reciver_Id")
                         .HasColumnType("int");
@@ -141,13 +141,17 @@ namespace SiteManagementInfrastructure.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("UserFullName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("UserName")
                         .IsRequired()

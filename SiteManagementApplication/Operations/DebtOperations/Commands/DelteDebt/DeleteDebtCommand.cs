@@ -21,7 +21,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.DelteDebt
         public void Handle()
         {
             var debt = _dataBase.Debts
-                .SingleOrDefault(a => a.DebtId == newDebtId);
+                .FirstOrDefault(a => a.DebtId == newDebtId);
             if (debt is not null)
             {
                 _dataBase.Debts.Remove(debt);

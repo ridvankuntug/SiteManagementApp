@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SiteManagementApplication.Settings
+﻿namespace SiteManagementApplication.Settings
 {
     public class JwtSettings
     {
+        public static readonly string Secret = "Uzun string key degeri";
     }
 }

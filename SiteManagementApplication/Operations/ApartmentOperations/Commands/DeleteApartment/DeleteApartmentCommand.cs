@@ -22,7 +22,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Dele
         public void Handle()
         {
             var apartment = _dataBase.Apartments
-                .SingleOrDefault(a => a.ApartmentBlock == newApartmentBlock && a.ApartmentFloor == newApartmentFloor && a.ApartmentNo == newApartmentNo);
+                .FirstOrDefault(a => a.ApartmentBlock == newApartmentBlock && a.ApartmentFloor == newApartmentFloor && a.ApartmentNo == newApartmentNo);
             if(apartment is not null)
             {
                 _dataBase.Apartments.Remove(apartment);

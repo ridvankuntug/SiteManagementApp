@@ -7,18 +7,8 @@ namespace SiteManagementDomain.Entities
         public int MessageId { get; set; }
         public string MessageText { get; set; }
         public bool IsRead { get; set; } = false;
-        public DateTime MessageTime { get; set; } = DateTime.Now;
-        public bool IsNew
-        {
-            get
-            {
-                if ((DateTime.Now - MessageTime).Days < 3)
-                {
-                    return true;
-                }
-                else { return false; }
-            }
-        }
+        public DateTime MessageSendTime { get; set; } = DateTime.Now;
+        public DateTime MessageEditTime { get; set; } = DateTime.Now;
 
 
         public int Sender_Id { get; set; }

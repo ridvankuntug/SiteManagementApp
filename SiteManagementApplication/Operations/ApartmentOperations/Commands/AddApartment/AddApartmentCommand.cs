@@ -21,20 +21,20 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.AddA
 
         public void Handle()
         {
-            var apartment = _dataBase.Apartments.SingleOrDefault(x =>
+            var apartment = _dataBase.Apartments.FirstOrDefault(x =>
                 x.ApartmentBlock == Model.ApartmentBlock &&
                 x.ApartmentFloor == Model.ApartmentFloor &&
                 x.ApartmentNo == Model.ApartmentNo);
 
-            if (apartment is not null)
-            {
-                throw new InvalidOperationException("Daire zaten mevcut.");
-            }
-            else
+            if (apartment is null)
             {
                 apartment = _mapper.Map<Apartment>(Model);
                 _dataBase.Apartments.Add(apartment);
                 _dataBase.SaveChanges();
+            }
+            else
+            {
+                throw new InvalidOperationException("Daire zaten mevcut.");
             }
 
         }

@@ -38,6 +38,26 @@ namespace SiteManagementApi.Controllers
             }
         }
 
+        [HttpGet("GetDebtByUserId/{id}")]
+        public IActionResult GetDebtByUserId(int id)
+        {
+            try
+            {
+                GetDebtByUserIdQuery query = new GetDebtByUserIdQuery(_dataBase, _mapper);
+                GetDebtByUserIdValidator validationRules = new GetDebtByUserIdValidator();
+
+                query.newUserId = id;
+                validationRules.ValidateAndThrow(query);
+                var debtObj = query.Handle();
+
+                return Ok(debtObj);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpPost("AddDebt")]
         public IActionResult AddDebt([FromBody] AddDebtModel newDebt)

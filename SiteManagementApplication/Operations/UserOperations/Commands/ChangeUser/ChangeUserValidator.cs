@@ -13,6 +13,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.ChangeUse
         {
             RuleFor(c => c.newUserId).NotEmpty().NotNull().GreaterThan(0);
             RuleFor(c => c.Model.UserName).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30);
+            RuleFor(c => c.Model.UserFullName).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30);
             RuleFor(c => c.Model.UserTc.ToString()).NotNull().Length(11);
             RuleFor(c => c.Model.Email).EmailAddress().When(e => !string.IsNullOrEmpty(e.Model.Email.Trim())).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30);
             RuleFor(c => c.Model.PhoneNumber).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 10);

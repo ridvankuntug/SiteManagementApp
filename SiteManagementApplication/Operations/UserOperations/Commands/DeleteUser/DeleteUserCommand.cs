@@ -21,7 +21,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.DeleteUse
         public void Handle()
         {
             var user = _dataBase.Users
-                .SingleOrDefault(a =>a.Id == newUserId);
+                .FirstOrDefault(a =>a.Id == newUserId);
             if (user is not null)
             {
                 _dataBase.Users.Remove(user);

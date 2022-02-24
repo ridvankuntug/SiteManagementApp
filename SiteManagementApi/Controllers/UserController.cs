@@ -7,11 +7,14 @@ using FluentValidation;
 using SiteManagementApplication.Operations.UserOperations.Commands.AddUser;
 using SiteManagementApplication.Operations.UserOperations.Commands.ChangeUser;
 using SiteManagementApplication.Operations.UserOperations.Commands.DeleteUser;
+using SiteManagementApplication.Operations.UserOperations.Queries.LoginUser;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SiteManagementApi.Controllers
 {
     [ApiController]
     [Route("Api/[controller]s")]
+    [Authorize]
     public class UserController : ControllerBase
     {
 
@@ -23,7 +26,31 @@ namespace SiteManagementApi.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
+        [HttpGet("LoginUser/{userName}/{parssword}")]
+        public IActionResult LoginUser(string userName, string parssword)
+        {
+            try
+            {
+                LoginUserQuery query = new LoginUserQuery(_dataBase, _mapper);
+                query.newUserName = userName;
+                query.newPassword = parssword;
+                LoginUserValidator validator = new LoginUserValidator();
+                validator.ValidateAndThrow(query);
+
+                var genreObj = query.Handle();
+
+                return Ok(genreObj);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetAllUser")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAllUser()
         {
             try
@@ -41,6 +68,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetUserById/{id}")]
+        [AllowAnonymous]
         public IActionResult GetUserById(int id)
         {
             try
@@ -62,6 +90,8 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetUserByName/{name}")]
+
+        [Authorize(Roles = "user")]
         public IActionResult GetUserByName(string name)
         {
             try
@@ -102,6 +132,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPut("ChangeUserBy/{id}")]
+        [AllowAnonymous]
         public IActionResult ChangeUser(int id, [FromBody] ChangeUserModel newApartment)
         {
             try

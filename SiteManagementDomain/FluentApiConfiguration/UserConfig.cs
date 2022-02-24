@@ -13,8 +13,11 @@ namespace SiteManagementDomain.FluentApiConfiguration
             modelBuilder.HasIndex(u => u.Email).IsUnique();
             modelBuilder.HasIndex(u => u.PhoneNumber).IsUnique();
 
+            modelBuilder.HasIndex(u => u.UserName).IsUnique();
             modelBuilder.Property(u => u.UserName).IsRequired().HasMaxLength(30);
-            modelBuilder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(50);
+
+            modelBuilder.Property(u => u.UserFullName).IsRequired().HasMaxLength(30);
+            modelBuilder.Property(u => u.PasswordHash).IsRequired().HasMaxLength(100);
             modelBuilder.Property(u => u.UserTc).IsRequired().HasMaxLength(11);
             modelBuilder.Property(u => u.Email).IsRequired().HasMaxLength(30);
             modelBuilder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(10);
