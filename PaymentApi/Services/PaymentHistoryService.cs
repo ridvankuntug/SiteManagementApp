@@ -7,6 +7,7 @@ namespace PaymentApi.Services
 {
     public class PaymentHistoryService
     {
+
         private readonly IMongoCollection<PaymentHistoryModel> _paymentHistoryModel;
 
         public PaymentHistoryService(IPaymentDatabaseSettings settings)
@@ -18,25 +19,27 @@ namespace PaymentApi.Services
         }
 
         public List<PaymentHistoryModel> Get() =>
-            _paymentHistoryModel.Find(pay => true).ToList();
+            _paymentHistoryModel.Find(history => true).ToList();
 
         public PaymentHistoryModel Get(string id) =>
-            _paymentHistoryModel.Find<PaymentHistoryModel>(pay => pay.PaymentId== id).FirstOrDefault();
+            _paymentHistoryModel.Find<PaymentHistoryModel>(history => history.PaymentId == id).FirstOrDefault();
 
-        public PaymentHistoryModel Create(PaymentHistoryModel pay)
+        public List<PaymentHistoryModel> GetByCardNumber(int cardNumber) =>
+            _paymentHistoryModel.Find<PaymentHistoryModel>(history => history.CardNumber == cardNumber).ToList();
+
+        public PaymentHistoryModel Create(PaymentHistoryModel history)
         {
-            pay.PaymentId = "";
-            _paymentHistoryModel.InsertOne(pay);
-            return pay;
+            _paymentHistoryModel.InsertOne(history);
+            return history;
         }
 
-        public void Update(string id, PaymentHistoryModel payIn) =>
-            _paymentHistoryModel.ReplaceOne(pay => pay.PaymentId == id, payIn);
+        public void Update(string id, PaymentHistoryModel historyIn) =>
+            _paymentHistoryModel.ReplaceOne(history => history.PaymentId == id, historyIn);
 
-        public void Remove(PaymentHistoryModel payIn) =>
-            _paymentHistoryModel.DeleteOne(pay => pay.PaymentId == payIn.PaymentId);
+        public void Remove(PaymentHistoryModel historyIn) =>
+            _paymentHistoryModel.DeleteOne(history => history.PaymentId == historyIn.PaymentId);
 
         public void Remove(string id) =>
-            _paymentHistoryModel.DeleteOne(pay => pay.PaymentId == id);
+            _paymentHistoryModel.DeleteOne(history => history.PaymentId == id);
     }
 }

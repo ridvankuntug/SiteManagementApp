@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PaymentApi.Services;
+using System;
 
 namespace PaymentApi.Controllers
 {
@@ -15,10 +16,24 @@ namespace PaymentApi.Controllers
         }
 
         [HttpGet("{cardNumber}/{exYear}/{exMonth}/{ccv}/{debt}", Name = "Pay")]
-        public bool Pay(int cardNumber, int exYear, int exMonth, int ccv, float debt)
+        public bool PayDebt(long cardNumber, int exYear, int exMonth, int ccv, float debt)
         {
-            bool result = _paymentService.Pay(cardNumber, exYear, exMonth, ccv, debt);
-            return result; 
+            //try
+            //{
+                bool result = _paymentService.Pay(cardNumber, exYear, exMonth, ccv, debt);
+                return result;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return BadRequest(new InvalidOperationException(ex.Message));
+            //}
+        }
+
+        [HttpPost("{cardNumber}/{addBalance}", Name = "AddBalance")]
+        public bool AddBalanceToCard(long cardNumber, float addBalance)
+        {
+            bool result = _paymentService.LoadBalance(cardNumber, addBalance);
+            return result;
         }
     }
 }
