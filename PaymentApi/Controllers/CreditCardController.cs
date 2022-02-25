@@ -33,6 +33,19 @@ namespace PaymentApi.Controllers
             return card;
         }
 
+        [HttpGet("{cardNumber}", Name = "GetByCardNumber")]
+        public ActionResult<CreditCardModel> GetByCardNumber(long cardNumber)
+        {
+            var card = _creditCardService.GetByCardNumber(cardNumber);
+
+            if (card == null)
+            {
+                return NotFound();
+            }
+
+            return card;
+        }
+
         [HttpPost]
         public ActionResult<CreditCardModel> Create(CreditCardModel card)
         {
@@ -52,6 +65,21 @@ namespace PaymentApi.Controllers
             }
 
             _creditCardService.Update(id, cardIn);
+
+            return NoContent();
+        }
+
+        [HttpPut("{cardNumber}")]
+        public IActionResult UpdateByCardNumber(long cardNumber, CreditCardModel cardIn)
+        {
+            var card = _creditCardService.GetByCardNumber(cardNumber);
+
+            if (card == null)
+            {
+                return NotFound();
+            }
+
+            _creditCardService.UpdateByCardNumber(cardNumber, cardIn);
 
             return NoContent();
         }

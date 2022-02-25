@@ -11,9 +11,9 @@ namespace PaymentApi.Controllers
     {
         private readonly PaymentHistoryService _paymentHistoryService;
 
-        public PaymentHistoryController(PaymentHistoryService paymentService)
+        public PaymentHistoryController(PaymentHistoryService paymentHistoryService)
         {
-            _paymentHistoryService = paymentService;
+            _paymentHistoryService = paymentHistoryService;
         }
 
         [HttpGet]
@@ -23,35 +23,48 @@ namespace PaymentApi.Controllers
         [HttpGet("{id:length(24)}", Name = "GetPaymentHistory")]
         public ActionResult<PaymentHistoryModel> Get(string id)
         {
-            var pay = _paymentHistoryService.Get(id);
+            var history = _paymentHistoryService.Get(id);
 
-            if (pay == null)
+            if (history == null)
             {
                 return NotFound();
             }
 
-            return pay;
+            return history;
+        }
+
+        [HttpGet("{cardNumber}", Name = "GetByCardNumber")]
+        public ActionResult<List<PaymentHistoryModel>> GetByCardNumber(int cardNumber)
+        {
+            var history = _paymentHistoryService.GetByCardNumber(cardNumber);
+
+            if (history == null)
+            {
+                return NotFound();
+            }
+
+            return history;
         }
 
         [HttpPost]
-        public ActionResult<PaymentHistoryModel> Create(PaymentHistoryModel pay)
+        public ActionResult<PaymentHistoryModel> Create(PaymentHistoryModel history)
         {
-            _paymentHistoryService.Create(pay);
+            _paymentHistoryService.Create(history);
 
-            return CreatedAtRoute("GetPaymentHistory", new { id = pay.PaymentId.ToString() }, pay);
+            return CreatedAtRoute("GetPaymentHistory", new { id = history.PaymentId.ToString() }, history);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, PaymentHistoryModel payIn)
+        public IActionResult Update(string id, PaymentHistoryModel historyIn)
         {
-            var pay = _paymentHistoryService.Get(id);
+            var history = _paymentHistoryService.Get(id);
 
-            if (pay == null)
+            if (history == null)
             {
                 return NotFound();
             }
 
-            _paymentHistoryService.Update(id, payIn);
+            _paymentHistoryService.Update(id, historyIn);
 
             return NoContent();
         }
@@ -59,14 +72,14 @@ namespace PaymentApi.Controllers
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var pay = _paymentHistoryService.Get(id);
+            var history = _paymentHistoryService.Get(id);
 
-            if (pay == null)
+            if (history == null)
             {
                 return NotFound();
             }
 
-            _paymentHistoryService.Remove(pay.PaymentId);
+            _paymentHistoryService.Remove(history.PaymentId);
 
             return NoContent();
         }

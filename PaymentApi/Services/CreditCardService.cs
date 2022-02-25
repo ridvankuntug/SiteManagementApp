@@ -26,26 +26,31 @@ namespace PaymentApi.Services
         }
 
         #region Payment servisinde kullanmak için özelleştirilmiş metodlar
-        public CreditCardModel GetByCardNumber(int cardNumber) =>
+        public CreditCardModel GetByCardNumber(long cardNumber) =>
             _creditCardService.Find<CreditCardModel>(card => card.CardNumber == cardNumber).FirstOrDefault();
 
-        public void UpdateByCardNumber(int cardNumber, CreditCardModel cardIn) =>
+        public void UpdateByCardNumber(long cardNumber, CreditCardModel cardIn) =>
             _creditCardService.ReplaceOne(card => card.CardNumber == cardNumber, cardIn);
 
-        public void AddBalance(int cardNumber, float addBalance)
+        public bool AddBalance(long cardNumber, float addBalance)
         {
-            CreditCardModel cardIn = GetByCardNumber(cardNumber);
-            cardIn.Balance = cardIn.Balance + addBalance;
-            _creditCardService.ReplaceOne(card => card.CardNumber == cardNumber, cardIn);
+            try
+            {
+                CreditCardModel cardIn = GetByCardNumber(cardNumber);
+                cardIn.Balance = cardIn.Balance + addBalance;
+                _creditCardService.ReplaceOne(card => card.CardNumber == cardNumber, cardIn);
+                return true;
+            }
+            catch { return false; }
         }
 
-        public bool CheckCardDetails(int cardNumber, int exYear, int exMonth, int ccv, float debt)
+        public bool CheckCardDetails(long cardNumber, int exYear, int exMonth, int ccv, float debt)
         {
             var card = _creditCardService.Find<CreditCardModel>(card => card.CardNumber == cardNumber).FirstOrDefault();
 
             if (card is null)
             {
-                throw new InvalidOperationException("Kart bulunamadı.");
+                return false;//throw new InvalidOperationException("Kart bulunamadı.");
             }
             else if (card.CardNumber == cardNumber && card.ExYear == exYear && card.ExMonth == exMonth && card.CCV == ccv)
             {
@@ -55,12 +60,12 @@ namespace PaymentApi.Services
                 }
                 else
                 {
-                    throw new InvalidOperationException("Bakiye yetersiz.");
+                    return false;//throw new InvalidOperationException("Bakiye yetersiz.");
                 }
             }
             else
             {
-                throw new InvalidOperationException("Kart bilgileri eşleşmiyor, tekrar kontrol ediniz.");
+                return false;//throw new InvalidOperationException("Kart bilgileri eşleşmiyor, tekrar kontrol ediniz.");
             }
         }
         #endregion

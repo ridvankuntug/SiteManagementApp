@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace PaymentApi.Model
 {
@@ -11,7 +12,7 @@ namespace PaymentApi.Model
 
         public long CardNumber { get; set; }
         public double Amount{ get; set; }
-        public BsonDateTime TransactionTime { get; set; }
+        public DateTime TransactionTime { get; set; }
 
         public string Description { get; set; }
     }
