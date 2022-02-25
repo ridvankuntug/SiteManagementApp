@@ -10,7 +10,9 @@ using System;
 
 namespace SiteManagementApi.Controllers
 {
-    public class MessageController : Controller
+    [ApiController]
+    [Route("Api/[controller]s")]
+    public class MessageController : ControllerBase
     {
         private readonly ApplicationDbContext _dataBase;
         private readonly IMapper _mapper;

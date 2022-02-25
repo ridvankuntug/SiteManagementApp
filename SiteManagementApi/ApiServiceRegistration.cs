@@ -8,7 +8,7 @@ namespace SiteManagementApi
         public static IServiceCollection AddApiService(this IServiceCollection services,
                IConfiguration configuration)
         {
-
+            services.AddHttpClient();
             return services;
         }
     }

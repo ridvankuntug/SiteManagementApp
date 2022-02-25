@@ -33,8 +33,8 @@ namespace PaymentApi.Controllers
             return history;
         }
 
-        [HttpGet("{cardNumber}", Name = "GetByCardNumber")]
-        public ActionResult<List<PaymentHistoryModel>> GetByCardNumber(int cardNumber)
+        [HttpGet("{cardNumber}", Name = "GetHistoryByCardNumber")]
+        public ActionResult<List<PaymentHistoryModel>> GetHistoryByCardNumber(int cardNumber)
         {
             var history = _paymentHistoryService.GetByCardNumber(cardNumber);
 

@@ -33,8 +33,8 @@ namespace PaymentApi.Controllers
             return card;
         }
 
-        [HttpGet("{cardNumber}", Name = "GetByCardNumber")]
-        public ActionResult<CreditCardModel> GetByCardNumber(long cardNumber)
+        [HttpGet("{cardNumber}", Name = "GetCardByNumber")]
+        public ActionResult<CreditCardModel> GetCardByNumber(long cardNumber)
         {
             var card = _creditCardService.GetByCardNumber(cardNumber);
 
