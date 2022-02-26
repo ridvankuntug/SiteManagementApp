@@ -8,6 +8,7 @@
         public long UserTc { get; set; }
         public string Email { get; set; }
         public string UserVehicle { get; set; }
+        public bool IsAdmin { get; set; }
 
         public string Apartment { get; set; }
     }

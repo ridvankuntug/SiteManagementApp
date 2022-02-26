@@ -20,34 +20,34 @@ namespace SiteManagementDomain.Entities
         #region Ignore Region
         [NotMapped]
         [Ignore]
-        public string NormalizedUserName;
+        private new string NormalizedUserName;
         [NotMapped]
         [Ignore]
-        public string NormalizedEmail;
+        private new string NormalizedEmail;
         [NotMapped]
         [Ignore]
-        public string EmailConfirmed;
+        private new string EmailConfirmed;
         [NotMapped]
         [Ignore]
-        public string SecurityStamp;
+        private new string SecurityStamp;
         [NotMapped]
         [Ignore]
-        public string ConcurrencyStamp;
+        private new string ConcurrencyStamp;
         [NotMapped]
         [Ignore]
-        public string PhoneNumberConfirmed;
+        private new string PhoneNumberConfirmed;
         [NotMapped]
         [Ignore]
-        public string TwoFactorEnabled;
+        private new string TwoFactorEnabled;
         [NotMapped]
         [Ignore]
-        public string LockoutEnd;
+        private new string LockoutEnd;
         [NotMapped]
         [Ignore]
-        public string LockoutEnabled;
+        private new string LockoutEnabled;
         [NotMapped]
         [Ignore]
-        public string AccessFailedCount;
+        private new string AccessFailedCount;
         #endregion
     }
 

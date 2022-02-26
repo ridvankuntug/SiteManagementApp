@@ -28,11 +28,11 @@ namespace PaymentApi.Services
                 PaymentHistoryModel historyObj = new PaymentHistoryModel();
                 historyObj.CardNumber = cardNumber;
                 historyObj.Amount = addBalance;
-                historyObj.TransactionTime = DateTime.Now;
+                historyObj.TransactionTime = DateTime.UtcNow;
 
                 historyObj.Description =
                     cardObj.OwnerName + ", " +
-                    DateTime.Now + " tarihinde, " +
+                    DateTime.UtcNow + " tarihinde, " +
                     cardNumber + " numaralı kartına, " +
                     addBalance + "₺ miktarında YÜKLEME yapmıştır.";
 
@@ -57,11 +57,11 @@ namespace PaymentApi.Services
                 PaymentHistoryModel historyObj = new PaymentHistoryModel();
                 historyObj.CardNumber = cardNumber;
                 historyObj.Amount = debt;
-                historyObj.TransactionTime = DateTime.Now;
+                historyObj.TransactionTime = DateTime.UtcNow;
 
                 historyObj.Description =
                     cardObj.OwnerName + ", " +
-                    DateTime.Now + " tarihinde, " +
+                    DateTime.UtcNow + " tarihinde, " +
                     cardNumber + " numaralı kartı ile, " +
                     period + " Döneminin, " +
                     debt + "₺ miktarında ÖDEMESİNİ yapmıştır.";

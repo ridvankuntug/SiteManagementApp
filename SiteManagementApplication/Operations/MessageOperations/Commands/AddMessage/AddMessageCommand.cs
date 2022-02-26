@@ -29,7 +29,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Commands.AddMes
             try
             {
                 message = _mapper.Map<Message>(Model);
-                message.MessageEditTime = message.MessageSendTime = DateTime.Now;
+                message.MessageEditTime = message.MessageSendTime = DateTime.UtcNow;
                 message.IsRead = false;
 
                 _dataBase.Messages.Add(message);

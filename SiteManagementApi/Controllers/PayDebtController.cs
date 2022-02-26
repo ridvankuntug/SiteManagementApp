@@ -59,7 +59,7 @@ namespace SiteManagementApi.Controllers
                     return "Ödenmemiş fatura bulunamadı";
                 }
 
-                string uri = "https://localhost:6001/api/Payment/"
+                string uri = "https://localhost:7001/api/Payment/"
                     + cardNumber + "/"
                     + exYear + "/"
                     + exMonth + "/"
@@ -74,7 +74,8 @@ namespace SiteManagementApi.Controllers
                     PayDebtCommand payDebt = new PayDebtCommand(_dataBase);
                     payDebt.newDebtId = debtObj.DebtId;
                     PayDebtValidator payDebtValidator = new PayDebtValidator();
-                    payDebtValidator.ValidateAndThrow(payDebt);                    
+                    payDebtValidator.ValidateAndThrow(payDebt);
+                    payDebt.Handle();
 
                     return "İşlem Başarılı";
                 }

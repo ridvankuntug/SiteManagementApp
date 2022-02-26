@@ -29,7 +29,6 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.AddUser
                 x.UserTc == Model.UserTc ||
                 x.Email == Model.Email ||
                 x.PhoneNumber == Model.PhoneNumber);
-
             if (user is null)
             {
                 PasswordHasher<string> pw = new PasswordHasher<string>();

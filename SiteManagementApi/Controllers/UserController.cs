@@ -27,14 +27,14 @@ namespace SiteManagementApi.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("LoginUser/{userName}/{parssword}")]
-        public IActionResult LoginUser(string userName, string parssword)
+        [HttpGet("LoginUser/{userName}/{password}")]
+        public IActionResult LoginUser(string userName, string password)
         {
             try
             {
                 LoginUserQuery query = new LoginUserQuery(_dataBase, _mapper);
                 query.newUserName = userName;
-                query.newPassword = parssword;
+                query.newPassword = password;
                 LoginUserValidator validator = new LoginUserValidator();
                 validator.ValidateAndThrow(query);
 
@@ -50,6 +50,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetAllUser")]
+        //[AllowAnonymous]
         [Authorize(Roles = "admin")]
         public IActionResult GetAllUser()
         {
