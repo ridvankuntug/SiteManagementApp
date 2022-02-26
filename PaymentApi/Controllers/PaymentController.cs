@@ -15,12 +15,12 @@ namespace PaymentApi.Controllers
             _paymentService = paymentService;
         }
 
-        [HttpGet("{cardNumber}/{exYear}/{exMonth}/{ccv}/{debt}", Name = "Pay")]
-        public bool PayDebt(long cardNumber, int exYear, int exMonth, int ccv, float debt)
+        [HttpGet("{cardNumber}/{exYear}/{exMonth}/{ccv}/{debt}", Name = "PayDebt")]
+        public bool PayDebt(long cardNumber, int exYear, int exMonth, int ccv, float debt, string period)
         {
             //try
             //{
-                bool result = _paymentService.Pay(cardNumber, exYear, exMonth, ccv, debt);
+                bool result = _paymentService.Pay(cardNumber, exYear, exMonth, ccv, debt, period);
                 return result;
             //}
             //catch (Exception ex)

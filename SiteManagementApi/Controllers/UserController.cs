@@ -89,6 +89,28 @@ namespace SiteManagementApi.Controllers
             }
         }
 
+        [HttpGet("GetUserByTc/{tc}")]
+        [AllowAnonymous]
+        public IActionResult GetUserByTc(long tc)
+        {
+            try
+            {
+                GetUserByTcQuery query = new GetUserByTcQuery(_dataBase, _mapper);
+                query.newUserTc = tc;
+                GetUserByTcValidator validator = new GetUserByTcValidator();
+                validator.ValidateAndThrow(query);
+
+                var genreObj = query.Handle();
+
+                return Ok(genreObj);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetUserByName/{name}")]
 
         [Authorize(Roles = "user")]

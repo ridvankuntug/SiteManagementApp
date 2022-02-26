@@ -4,6 +4,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
 {
     public class GetDebtModel
     {
+        public int DebtId { get; set; }
         public float DebtBill { get; set; }
         public float DebtDue { get; set; }
         public int DebtYear { get; set; }

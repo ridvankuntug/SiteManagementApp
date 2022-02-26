@@ -33,7 +33,7 @@ namespace PaymentApi.Services
                 historyObj.Description =
                     cardObj.OwnerName + ", " +
                     DateTime.Now + " tarihinde, " +
-                    cardNumber + " numaralı kartna, " +
+                    cardNumber + " numaralı kartına, " +
                     addBalance + "₺ miktarında YÜKLEME yapmıştır.";
 
                 _paymentHistoryService.Create(historyObj);
@@ -45,7 +45,7 @@ namespace PaymentApi.Services
             }
         }
 
-        public bool Pay(long cardNumber, int exYear, int exMonth, int ccv, float debt)
+        public bool Pay(long cardNumber, int exYear, int exMonth, int ccv, float debt, string period)
         {
             bool checkCard = _creditCardService.CheckCardDetails(cardNumber, exYear, exMonth, ccv, debt);
             if (checkCard)
@@ -63,7 +63,7 @@ namespace PaymentApi.Services
                     cardObj.OwnerName + ", " +
                     DateTime.Now + " tarihinde, " +
                     cardNumber + " numaralı kartı ile, " +
-                    exMonth + "/" + exYear + " Döneminin, " +
+                    period + " Döneminin, " +
                     debt + "₺ miktarında ÖDEMESİNİ yapmıştır.";
 
                 _paymentHistoryService.Create(historyObj);
