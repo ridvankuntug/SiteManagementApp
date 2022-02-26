@@ -7,8 +7,8 @@ namespace SiteManagementDomain.Entities
         public int MessageId { get; set; }
         public string MessageText { get; set; }
         public bool IsRead { get; set; } = false;
-        public DateTime MessageSendTime { get; set; } = DateTime.Now;
-        public DateTime MessageEditTime { get; set; } = DateTime.Now;
+        public DateTime MessageSendTime { get; set; } = DateTime.UtcNow;
+        public DateTime MessageEditTime { get; set; } = DateTime.UtcNow;
 
 
         public int Sender_Id { get; set; }
