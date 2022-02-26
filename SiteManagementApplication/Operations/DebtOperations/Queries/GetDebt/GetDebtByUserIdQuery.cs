@@ -16,6 +16,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
         private readonly IMapper _mapper;
 
         public int newUserId;
+        public bool newPaidCheck;
 
         public GetDebtByUserIdQuery(ApplicationDbContext dbContext, IMapper mapper)
         {
@@ -25,7 +26,10 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
 
         public List<GetDebtModel> Handle()
         {
-            var debt = _dataBase.Debts.Where(u => u.User_Id == newUserId);
+            var debt = newPaidCheck ?
+                _dataBase.Debts.Where(u => u.User_Id == newUserId && u.IsPaid == false) :
+                _dataBase.Debts.Where(u => u.User_Id == newUserId);
+
             if (debt is not null)
             {
                 List<GetDebtModel> debtList = _mapper.Map<List<GetDebtModel>>(debt);

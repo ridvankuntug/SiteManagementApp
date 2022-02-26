@@ -22,12 +22,13 @@ namespace SiteManagementApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("GetAllDebt")]
-        public IActionResult GetAllDebt()
+        [HttpGet("GetAllDebt/{paidCheck}")]
+        public IActionResult GetAllDebt(bool paidCheck)
         {
             try
             {
                 GetAllDebtQuery query = new GetAllDebtQuery(_dataBase, _mapper);
+                query.newPaidCheck = paidCheck;
                 var debtObj = query.Handle();
 
                 return Ok(debtObj);
@@ -38,8 +39,30 @@ namespace SiteManagementApi.Controllers
             }
         }
 
-        [HttpGet("GetDebtByUserId/{id}")]
-        public IActionResult GetDebtByUserId(int id)
+        [HttpGet("GetDebtById/{id}/{paidCheck}")]
+        public IActionResult GetDebtById(int id, bool paidCheck)
+        {
+            try
+            {
+                GetDebtByIdQuery query = new GetDebtByIdQuery(_dataBase, _mapper);
+                GetDebtByIdValidator validationRules = new GetDebtByIdValidator();
+
+                query.newDebtId = id;
+                query.newPaidCheck = paidCheck;
+
+                validationRules.ValidateAndThrow(query);
+                var debtObj = query.Handle();
+
+                return Ok(debtObj);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetDebtByUserId/{id}/{paidCheck}")]
+        public IActionResult GetDebtByUserId(int id, bool paidCheck)
         {
             try
             {
@@ -47,6 +70,33 @@ namespace SiteManagementApi.Controllers
                 GetDebtByUserIdValidator validationRules = new GetDebtByUserIdValidator();
 
                 query.newUserId = id;
+                query.newPaidCheck = paidCheck;
+
+                validationRules.ValidateAndThrow(query);
+                var debtObj = query.Handle();
+
+                return Ok(debtObj);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetDebtByUser/{id}/With/{debthMonth}/{debtYear}/{paidCheck}")]
+        public IActionResult GetDebtByUserIdWithPeriod(int id, int debtMonth, int debtYear, bool paidCheck)
+        {
+            try
+            {
+                GetDebtByUserIdWithPeriodQuery query = new GetDebtByUserIdWithPeriodQuery(_dataBase, _mapper);
+                GetDebtByUserIdWithPeriodValidator validationRules = new GetDebtByUserIdWithPeriodValidator();
+
+                query.newUserId = id;
+                query.newDebtMonth = debtMonth;
+                query.newDebtYear = debtYear;
+
+                query.newPaidCheck = paidCheck;
+
                 validationRules.ValidateAndThrow(query);
                 var debtObj = query.Handle();
 

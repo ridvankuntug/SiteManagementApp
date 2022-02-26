@@ -12,6 +12,8 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
         private readonly ApplicationDbContext _dataBase;
         private readonly IMapper _mapper;
 
+        public bool newPaidCheck;
+
         public GetAllDebtQuery(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dataBase = dbContext;
@@ -20,7 +22,10 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
 
         public List<GetDebtModel> Handle()
         {
-            var debt = _dataBase.Debts.Where(u => u.DebtId > 0);
+            var debt = newPaidCheck ? 
+                _dataBase.Debts.Where(u => u.IsPaid == false) :
+                _dataBase.Debts.Where(u => u.DebtId > 0);
+
             if (debt is not null)
             {
                 List<GetDebtModel> debtList = _mapper.Map<List<GetDebtModel>>(debt);
