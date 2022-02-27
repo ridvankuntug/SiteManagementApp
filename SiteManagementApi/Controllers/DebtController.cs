@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using SiteManagementApplication.Operations.ApartmentOperations.Queries.GetApatment;
 using SiteManagementApplication.Operations.DebtOperations.Commands.AddDebt;
 using SiteManagementApplication.Operations.DebtOperations.Commands.ChangeDebt;
 using SiteManagementApplication.Operations.DebtOperations.Commands.DelteDebt;
@@ -83,6 +84,30 @@ namespace SiteManagementApi.Controllers
             }
         }
 
+        [HttpGet("GetDebtBy/{debtMonth}/{debtYear}/{paidCheck}")]
+        public IActionResult GetDebtByPeriod(int debtMonth, int debtYear, bool paidCheck)
+        {
+            try
+            {
+                GetDebtByPeriodQuery query = new GetDebtByPeriodQuery(_dataBase, _mapper);
+                GetDebtByPeriodValidator validationRules = new GetDebtByPeriodValidator();
+                    
+                query.newDebtMonth = debtMonth;
+                query.newDebtYear = debtYear;
+
+                query.newPaidCheck = paidCheck;
+
+                validationRules.ValidateAndThrow(query);
+                var debtObj = query.Handle();
+
+                return Ok(debtObj);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetDebtByUser/{id}/With/{debthMonth}/{debtYear}/{paidCheck}")]
         public IActionResult GetDebtByUserIdWithPeriod(int id, int debtMonth, int debtYear, bool paidCheck)
         {
@@ -120,7 +145,39 @@ namespace SiteManagementApi.Controllers
                 addDebt.Model = newDebt;
                 validationRules.ValidateAndThrow(addDebt);
                 addDebt.Handle();
-                return Ok();
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AddDebtToAll")]
+        public IActionResult AddDebtToAll([FromBody] AddDebtModel newDebt)
+        {
+            try
+            {
+                //Evsahiplerine aidatlarını paylaştırmak için daireleri çekiyoruz
+                GetAllApartmentQuery query = new GetAllApartmentQuery(_dataBase, _mapper);
+                var apartment = query.Handle().FindAll(c => c.User_Id is not null);
+
+                AddDebtCommand addDebt = new AddDebtCommand(_dataBase, _mapper);
+                AddDebtValidator validationRules = new AddDebtValidator();
+                addDebt.Model = newDebt;
+                float due = newDebt.DebtDue / apartment.Count;
+                float bill = newDebt.DebtBill / apartment.Count;
+
+                foreach (var item in apartment)
+                {
+                    addDebt.Model.DebtDue = due;
+                    addDebt.Model.DebtBill = bill;
+                    addDebt.Model.User_Id = (int)item.User_Id;
+                    validationRules.ValidateAndThrow(addDebt);
+                    addDebt.Handle();
+
+                }
+                return Ok(true);
             }
             catch (Exception ex)
             {

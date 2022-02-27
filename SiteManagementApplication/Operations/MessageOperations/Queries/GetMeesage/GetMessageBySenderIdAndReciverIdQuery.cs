@@ -27,14 +27,16 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
         public List<GetMessageModel> Handle()
         {
             var message = _dataBase.Messages
-                .Where(a => a.Sender_Id == newSenderId && a.Reciver_Id == newReciverId);
+                .Where(a => a.Sender_Id == newSenderId && a.Reciver_Id == newReciverId).OrderBy(c => c.MessageId);
 
             if (message is not null)
             {
-                GetAllUserQuery query = new GetAllUserQuery(_dataBase, _mapper);
-                var userObj = query.Handle();
-
                 List<GetMessageModel> messageList = _mapper.Map<List<GetMessageModel>>(message);
+
+
+                //Bu işlemler mapping tarafında yapıldı
+                /*GetAllUserQuery query = new GetAllUserQuery(_dataBase, _mapper);
+                var userObj = query.Handle();
 
                 foreach (GetMessageModel msj in messageList)
                 {
@@ -48,7 +50,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
                         =
                         userObj.Where(a => a.Id == msj.Reciver_Id).FirstOrDefault().UserFullName;
 
-                }
+                }*/
                 return messageList;
             }
             else

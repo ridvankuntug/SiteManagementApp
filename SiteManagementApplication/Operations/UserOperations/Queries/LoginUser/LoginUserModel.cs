@@ -8,7 +8,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Queries.LoginUser
 {
     public class LoginUserModel
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
         public string UserName { get; set; }
         //public string PasswordHash { get; set; }
         public string Email { get; set; }

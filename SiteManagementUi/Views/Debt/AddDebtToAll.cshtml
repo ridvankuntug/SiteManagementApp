@@ -1,0 +1,48 @@
+﻿@model SiteManagementUi.Models.DebtModels.AddDebtToAllModel
+
+@{
+    ViewData["Title"] = "AddDebtToAll";
+}
+
+<h1>AddDebtToAll</h1>
+
+<h4>AddDebtToAllModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddDebtToAll">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DebtBill" class="control-label"></label>
+                <input asp-for="DebtBill" class="form-control" />
+                <span asp-validation-for="DebtBill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DebtDue" class="control-label"></label>
+                <input asp-for="DebtDue" class="form-control" />
+                <span asp-validation-for="DebtDue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DebtYear" class="control-label"></label>
+                <input asp-for="DebtYear" class="form-control" />
+                <span asp-validation-for="DebtYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DebtMonth" class="control-label"></label>
+                <input asp-for="DebtMonth" class="form-control" />
+                <span asp-validation-for="DebtMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

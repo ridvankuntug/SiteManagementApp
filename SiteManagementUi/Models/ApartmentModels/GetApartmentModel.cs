@@ -1,6 +1,4 @@
-﻿
-
-namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetApatment
+﻿namespace SiteManagementUi.Models.ApartmentModels
 {
     public class GetApartmentModel
     {
@@ -10,7 +8,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
         public int ApartmentNo { get; set; }
         public string ApartmentType { get; set; }
 
-        public int? User_Id{ get; set; }
+        public int? User_Id { get; set; }
 
         //Ev sahibinin sistemdeki Id'si ile eşleşen ismi 
         //getirmek için yeni bir property tanımlıyoruz

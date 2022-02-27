@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMeesage
+namespace SiteManagementUi.Models.MessageModels
 {
     public class GetMessageModel
     {

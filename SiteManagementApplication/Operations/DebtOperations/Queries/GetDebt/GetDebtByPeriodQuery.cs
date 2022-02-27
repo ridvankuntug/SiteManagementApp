@@ -9,32 +9,33 @@ using System.Threading.Tasks;
 
 namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
 {
-    public class GetDebtByIdQuery
+    public class GetDebtByPeriodQuery
     {
         public GetDebtModel Model { get; set; }
 
         private readonly ApplicationDbContext _dataBase;
         private readonly IMapper _mapper;
-        public bool newPaidChecknewPaidCheck;
 
-        public int newDebtId;
+        public int newDebtYear;
+        public int newDebtMonth;
         public bool newPaidCheck;
 
-        public GetDebtByIdQuery(ApplicationDbContext dbContext, IMapper mapper)
+        public GetDebtByPeriodQuery(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dataBase = dbContext;
             _mapper = mapper;
         }
 
-        public GetDebtModel Handle()
+        public List<GetDebtModel> Handle()
         {
             var debt = newPaidCheck ?
-               _dataBase.Debts.Include(a => a.User).FirstOrDefault(u => u.DebtId == newDebtId && u.IsPaid == false):
-               _dataBase.Debts.Include(a => a.User).FirstOrDefault(u => u.DebtId == newDebtId);
+                _dataBase.Debts.Include(a => a.User).Where(u => u.DebtYear == newDebtYear && u.DebtMonth == newDebtMonth && u.IsPaid == false).OrderBy(c => c.DebtId) :
+                _dataBase.Debts.Include(a => a.User).Where(u => u.DebtYear == newDebtYear && u.DebtMonth == newDebtMonth && u.IsPaid == true).OrderBy(c => c.DebtId);
+
             if (debt is not null)
             {
-                GetDebtModel debtObj = _mapper.Map<GetDebtModel>(debt);
-                return debtObj;
+                List<GetDebtModel> debtList = _mapper.Map<List<GetDebtModel>>(debt);
+                return debtList;
             }
             else
             {

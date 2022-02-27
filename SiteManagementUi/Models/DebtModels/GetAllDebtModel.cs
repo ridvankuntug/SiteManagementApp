@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
+﻿namespace SiteManagementUi.Models.DebtModels
 {
-    public class GetDebtModel
+    public class GetAllDebtModel
     {
         public int DebtId { get; set; }
         public float DebtBill { get; set; }
@@ -11,10 +9,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
         public int DebtMonth { get; set; }
         public bool IsPaid { get; set; }
 
-        public float DebtTotal
-        {
-            get { return DebtBill + DebtDue; }
-        }
+        public float DebtTotal { get; set; }
 
         public int User_Id { get; set; }
         public string UserName { get; set; }

@@ -25,17 +25,17 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
 
         public List<GetMessageModel> Handle()
         {
-            var message = _dataBase.Messages.Where(a => a.MessageId > 0);
+            var message = _dataBase.Messages.Where(a => a.MessageId > 0).OrderBy(c => c.MessageId);
 
             if (message is not null)
             {
-                GetAllUserQuery query = new GetAllUserQuery(_dataBase, _mapper);
-                var userObj = query.Handle();
-
-
                 List<GetMessageModel> messageList = _mapper.Map<List<GetMessageModel>>(message);
-                foreach (GetMessageModel msj in messageList)
-                {
+
+
+                /*  GetAllUserQuery query = new GetAllUserQuery(_dataBase, _mapper);
+                    var userObj = query.Handle();
+                    foreach (GetMessageModel msj in messageList)
+                {   //Burayı mapping ile yap
                     //Sender_Id ile eşleşen kişinin adını SenderName e yazıyoruz
                     messageList.Where(a => a.Sender_Id == msj.Sender_Id).FirstOrDefault().SenderName
                         =
@@ -46,7 +46,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
                         =
                         userObj.Where(a => a.Id == msj.Reciver_Id).FirstOrDefault().UserFullName;
 
-                }
+                }*/
                 return messageList;
             }
             else

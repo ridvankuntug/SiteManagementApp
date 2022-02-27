@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
     {
         public GetMessageBySenderIdValidator()
         {
-            RuleFor(m => m.newSenderId).NotEmpty().GreaterThan(1);
+            RuleFor(m => m.newSenderId).NotEmpty().GreaterThan(0);
         }
     }
 }

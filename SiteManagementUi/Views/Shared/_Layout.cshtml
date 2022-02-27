@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using SiteManagementUi.Services
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SiteManagementUi</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -19,17 +20,70 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Test" asp-action="Index">Test</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Test" asp-action="Index">Test</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="GetLogin">Login</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Apartments
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="AddApartment">AddApartment</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="ChangeApartment">ChangeApartment</a>                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Debts
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="AddDebtToAll">AddDebtToAll</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllPaidDebt">GetAllPaidDebt</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllNotPaidDebt">GetAllNotPaidDebt</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetPaidDebtByPeriod">GetPaidDebtByPeriod</a>
+                            </div>
+                        </li><li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Users
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="GetAllUser">GetAllUser</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Messages
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageByReciverId">GetMessageByReciverId</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageBySenderId">GetMessageBySenderId</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="PlaceHolder">PlaceHolder</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        @if (UserService.Token is null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-light btn-small btn-nav" asp-area="" asp-controller="Login" asp-action="GetLogin">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-light btn-small btn-nav" asp-area="" asp-controller="" asp-action=""> Hoşgeldin @UserService.Token.UserFullName</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

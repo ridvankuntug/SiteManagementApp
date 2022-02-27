@@ -31,9 +31,9 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
             if (message is not null)
             {
                 GetMessageModel messageObj = _mapper.Map<GetMessageModel>(message);
-
+                //Bu işlemler mapping tarafında yapıldı
                 //Mesaj göndericisini ve alıcısını diğer tablodan çekiyoruz
-                GetUserByIdQuery query = new GetUserByIdQuery(_dataBase, _mapper);
+                /*GetUserByIdQuery query = new GetUserByIdQuery(_dataBase, _mapper);
                 GetUserByIdValidator validator = new GetUserByIdValidator();
                 query.newUserId = message.Sender_Id;
                 validator.ValidateAndThrow(query);
@@ -41,7 +41,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
 
                 query.newUserId = message.Reciver_Id;
                 validator.ValidateAndThrow(query);
-                messageObj.ReciverName = query.Handle().UserFullName;
+                messageObj.ReciverName = query.Handle().UserFullName;*/
 
                 return messageObj;
             }
