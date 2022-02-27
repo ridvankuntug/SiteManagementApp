@@ -17,5 +17,6 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
         }
 
         public int User_Id { get; set; }
+        public string UserName { get; set; }
     }
 }

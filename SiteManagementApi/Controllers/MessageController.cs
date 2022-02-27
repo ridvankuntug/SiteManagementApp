@@ -175,7 +175,7 @@ namespace SiteManagementApi.Controllers
                 ReadMessageValidator validator = new ReadMessageValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {

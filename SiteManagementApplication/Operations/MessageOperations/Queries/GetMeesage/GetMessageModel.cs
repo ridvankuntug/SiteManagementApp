@@ -8,6 +8,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
 {
     public class GetMessageModel
     {
+        public int MessageId { get; set; }
         public string MessageText { get; set; }
         public bool IsRead { get; set; } = false;
         public DateTime MessageSendTime { get; set; } = DateTime.UtcNow;

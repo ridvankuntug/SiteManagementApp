@@ -1,0 +1,83 @@
+﻿@model IEnumerable<SiteManagementUi.Models.DebtModels.GetAllDebtModel>
+
+@{
+    ViewData["Title"] = "GetPaidDebtByPeriodCheck";
+}
+
+<h1>GetPaidDebtByPeriodCheck</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtBill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtDue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtBill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtDue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

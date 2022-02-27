@@ -12,7 +12,7 @@ namespace SiteManagementUi.Controllers
         public IActionResult Index()
         {
             List<string> bag = new List<string>();
-            UserService.GetAllUsers().ToList().ForEach(p => bag.Add($"{p.Id} {p.UserName} {p.Role}"));
+            UserService.GetAllUsers().ToList().ForEach(p => bag.Add($"{p.Id} {p.UserName}"));
             ViewBag.Title = "Index";
             ViewBag.Message = bag;
 

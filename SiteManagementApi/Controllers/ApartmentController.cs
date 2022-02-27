@@ -95,7 +95,7 @@ namespace SiteManagementApi.Controllers
                 addApartment.Model = newApartment;
                 validationRules.ValidateAndThrow(addApartment);
                 addApartment.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -117,7 +117,7 @@ namespace SiteManagementApi.Controllers
                 ChangeApartmentValidator validator = new ChangeApartmentValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {

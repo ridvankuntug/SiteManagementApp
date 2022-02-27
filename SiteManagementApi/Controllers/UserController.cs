@@ -50,8 +50,8 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetAllUser")]
-        //[AllowAnonymous]
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "admin")]
         public IActionResult GetAllUser()
         {
             try
@@ -68,9 +68,9 @@ namespace SiteManagementApi.Controllers
             }
         }
 
-        [HttpGet("GetUserById/{id}")]
+        [HttpGet("GetUserBy/{id}")]
         [AllowAnonymous]
-        public IActionResult GetUserById(int id)
+        public IActionResult GetUserBy(int id)
         {
             try
             {

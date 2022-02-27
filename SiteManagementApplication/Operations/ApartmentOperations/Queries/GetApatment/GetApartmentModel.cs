@@ -4,6 +4,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
 {
     public class GetApartmentModel
     {
+        public int ApartmentId { get; set; }
         public char ApartmentBlock { get; set; }
         public int ApartmentFloor { get; set; }
         public int ApartmentNo { get; set; }

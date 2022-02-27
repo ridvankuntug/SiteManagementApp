@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SiteManagementInfrastructure.DatabaseContext;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,11 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
         public GetDebtModel Handle()
         {
             var debt = newPaidCheck ? 
-                _dataBase.Debts.FirstOrDefault(u => 
+                _dataBase.Debts.Include(a => a.User).FirstOrDefault(u => 
                 u.User_Id == newUserId && u.DebtMonth == newDebtMonth && u.DebtYear == newDebtYear && 
                 u.IsPaid == false) :
 
-                _dataBase.Debts.FirstOrDefault(u => 
+                _dataBase.Debts.Include(a => a.User).FirstOrDefault(u => 
                 u.User_Id == newUserId && u.DebtMonth == newDebtMonth && u.DebtYear == newDebtYear);
 
             if (debt is not null)

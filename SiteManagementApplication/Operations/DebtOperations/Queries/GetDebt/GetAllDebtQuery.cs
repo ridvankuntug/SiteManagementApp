@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SiteManagementInfrastructure.DatabaseContext;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,8 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
         public List<GetDebtModel> Handle()
         {
             var debt = newPaidCheck ? 
-                _dataBase.Debts.Where(u => u.IsPaid == false) :
-                _dataBase.Debts.Where(u => u.DebtId > 0);
+                _dataBase.Debts.Include(a => a.User).Where(u => u.IsPaid == true).OrderBy(c=> c.DebtId):
+                _dataBase.Debts.Include(a => a.User).Where(u => u.IsPaid == false).OrderBy(c => c.DebtId);
 
             if (debt is not null)
             {

@@ -29,19 +29,19 @@ namespace SiteManagementUi.Services
 
         public static async Task<string> GetAll(string method)
         {
-            serviceUrl = $"{url}Api/Users/{method}";
+            serviceUrl = $"{url}Api/{method}";
             using (HttpResponseMessage response = await client.GetAsync(serviceUrl))
                 return await response.Content.ReadAsStringAsync();
         }
         public static async Task<string> GetSingle(string method, int id)
         {
-            serviceUrl = $"{url}api/Users/{method}/{id}";
+            serviceUrl = $"{url}Api/{method}/{id}";
             using (HttpResponseMessage response = await client.GetAsync(serviceUrl))
                 return await response.Content.ReadAsStringAsync();
         }
         public static async Task<string> Post<T>(string method, T instance) where T : class, new()
         {
-            serviceUrl = $"{url}api/Users/{method}";
+            serviceUrl = $"{url}Api/{method}";
             StringContent httpContent = new StringContent(JsonConvert.SerializeObject(instance), Encoding.UTF8, "application/json");
             using (HttpResponseMessage response = await client.PostAsync(serviceUrl, httpContent))
             {
@@ -51,7 +51,7 @@ namespace SiteManagementUi.Services
         }
         public static async Task<string> Put<T>(string method, T instance) where T : class, new()
         {
-            serviceUrl = $"{url}api/Users/{method}";
+            serviceUrl = $"{url}Api/{method}";
             StringContent httpContent = new StringContent(JsonConvert.SerializeObject(instance), Encoding.UTF8, "application/json");
             using (HttpResponseMessage response = await client.PutAsync(serviceUrl, httpContent))
             {
@@ -61,7 +61,7 @@ namespace SiteManagementUi.Services
         }
         public static async Task<string> Delete(string method, int id)
         {
-            serviceUrl = $"{url}api/Users/{method}/{id}";
+            serviceUrl = $"{url}Api/{method}/{id}";
             using (HttpResponseMessage response = await client.DeleteAsync(serviceUrl))
                 return await response.Content.ReadAsStringAsync();
         }

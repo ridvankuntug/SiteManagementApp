@@ -1,0 +1,83 @@
+﻿@model IEnumerable<SiteManagementUi.Models.MessageModels.GetMessageModel>
+
+@{
+    ViewData["Title"] = "GetMessageBySenderId";
+}
+
+<h1>GetMessageBySenderId</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsRead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageSendTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageEditTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sender_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SenderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reciver_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReciverName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageSendTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageEditTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SenderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reciver_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReciverName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
