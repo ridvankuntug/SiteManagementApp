@@ -10,22 +10,22 @@ namespace SiteManagementUi.Services
         static string jsonData = "";
         static public List<GetApartmentModel> GetAllApartments()
         {
-            jsonData = WebApiService.GetAll("GetAllApartment").Result;
+            jsonData = WebApiService.GetAll("Apartments/GetAllApartment").Result;
             return JsonConvert.DeserializeObject<List<GetApartmentModel>>(jsonData);
         }
-        //static public Apartment GetApartment(int id)
-        //{
-        //    jsonData = WebApiService.GetSingle("getsingle", id).Result;
-        //    return JsonConvert.DeserializeObject<Apartment>(jsonData);
-        //}
+        static public GetApartmentModel GetApartment(int id)
+        {
+            jsonData = WebApiService.GetSingle("Apartments/GetApartmentBy", id).Result;
+            return JsonConvert.DeserializeObject<GetApartmentModel>(jsonData);
+        }
         static public string PostApartment(AddApartmentModel apartment)
         {
             jsonData = WebApiService.Post<AddApartmentModel>("Apartments/AddApartment", apartment).Result;
             return JsonConvert.DeserializeObject(jsonData).ToString();
         }
-        static public string PutApartment(string block, int floor, int no, ChangeApartmentSenderModel apartment)
+        static public string PutApartment(int id, ChangeApartmentSenderModel apartment)
         {
-            jsonData = WebApiService.Put<ChangeApartmentSenderModel>("Apartments/ChangeApartmentBy/"+block+"/"+floor+"/"+no , apartment).Result;
+            jsonData = WebApiService.Put<ChangeApartmentSenderModel>("Apartments/ChangeApartmentBy/" + id , apartment).Result;
             return JsonConvert.DeserializeObject(jsonData).ToString();
         }
         //static public string Delete(int id)

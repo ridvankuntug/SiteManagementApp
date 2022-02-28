@@ -136,7 +136,7 @@ namespace SiteManagementApi.Controllers
                 addMessage.Model = newMessage;
                 validationRules.ValidateAndThrow(addMessage);
                 addMessage.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -156,7 +156,7 @@ namespace SiteManagementApi.Controllers
                 ChangeMessageValidator validator = new ChangeMessageValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -194,7 +194,7 @@ namespace SiteManagementApi.Controllers
                 DeleteMessageValidator validator = new DeleteMessageValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {

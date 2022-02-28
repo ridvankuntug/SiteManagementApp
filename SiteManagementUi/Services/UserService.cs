@@ -36,14 +36,14 @@ namespace SiteManagementUi.Services
             jsonData = WebApiService.GetSingle("Users/GetUserBy", id).Result;
             return JsonConvert.DeserializeObject<GetUserModel>(jsonData);
         }
-        //static public string PostUser(User user)
-        //{
-        //    jsonData = WebApiService.Post<User>("post", user).Result;
-        //    return JsonConvert.DeserializeObject(jsonData).ToString();
-        //}
-        static public string PutUser(User user)
+        static public string PostUser(ChangeUserModel user)
         {
-            jsonData = WebApiService.Put<User>("put", user).Result;
+            jsonData = WebApiService.Post<ChangeUserModel>("Users/AddUser", user).Result;
+            return JsonConvert.DeserializeObject(jsonData).ToString();
+        }
+        static public string PutUser(int id, ChangeUserModel user)
+        {
+            jsonData = WebApiService.Put<ChangeUserModel>("Users/ChangeUserBy/" + id, user).Result;
             return JsonConvert.DeserializeObject(jsonData).ToString();
         }
         //static public string Delete(int id)

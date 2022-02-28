@@ -11,9 +11,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
 
         private readonly ApplicationDbContext _dataBase;
 
-        public string newApartmentBlock;
-        public int newApartmentFloor;
-        public int newApartmentNo;
+        public int newApartmentId;
 
         public ChangeApartmentCommand(ApplicationDbContext dbContext)
         {
@@ -23,7 +21,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
         public void Handle()
         {
             var apartment = _dataBase.Apartments
-                .Where(x => x.ApartmentBlock == newApartmentBlock && x.ApartmentFloor == newApartmentFloor && x.ApartmentNo == newApartmentNo)
+                .Where(x => x.ApartmentId == newApartmentId)
                 .FirstOrDefault();
 
             if (apartment is not null)

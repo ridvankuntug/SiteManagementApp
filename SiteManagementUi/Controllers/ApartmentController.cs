@@ -12,6 +12,7 @@ namespace SiteManagementUi.Controllers
             List<GetApartmentModel> getApartmentModel = ApartmentService.GetAllApartments();
             return View(getApartmentModel);
         }
+        //TODO: Model alacak şekilde değiştir
         public IActionResult AddApartment(string apartmentBlock, int apartmentFloor, int apartmentNo, string apartmentType)
         {
             if (apartmentBlock is null) { return View(); }
@@ -25,14 +26,32 @@ namespace SiteManagementUi.Controllers
             return View();
         }
 
-        public IActionResult ChangeApartment(string apartmentBlock, int apartmentFloor, int apartmentNo, string apartmentType, int user_Id)
+        //[Route("ChangeApaertment/{id}")]
+        public IActionResult ChangeApartment(int id)
         {
-            if (apartmentBlock is null) { return View(); }
+            if (id > 0)
+            {
+                GetApartmentModel getApartmentModel = ApartmentService.GetApartment(id);
+                if (getApartmentModel != null)
+                {
+                    return View(getApartmentModel);
 
-            ChangeApartmentSenderModel apartmentModel = new ChangeApartmentSenderModel();
-            apartmentModel.ApartmentType = apartmentType;
-            apartmentModel.User_Id = user_Id;
-            ApartmentService.PutApartment(apartmentBlock, apartmentFloor, apartmentNo, apartmentModel);
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ChangeApartment(GetApartmentModel apartment)
+        {
+            if (apartment is not null)
+            {
+                ChangeApartmentSenderModel apartmentSender = new ChangeApartmentSenderModel();
+                apartmentSender.ApartmentType = apartment.ApartmentType;
+                apartmentSender.User_Id = apartment.User_Id;
+                ApartmentService.PutApartment(apartment.ApartmentId, apartmentSender);
+                return View();
+            }
             return View();
         }
     }

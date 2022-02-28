@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SiteManagementUi.Models.ApartmentModels.GetApartmentModel>
+
+@{
+    ViewData["Title"] = "GetAllApartment";
+}
+
+<h1>GetAllApartment</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentBlock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentFloor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentBlock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentFloor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApartmentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "ChangeApartment", new {  id = item.ApartmentId  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
