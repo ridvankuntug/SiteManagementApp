@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Queries.GetUser
     {
         public GetUserByTcValidator()
         {
-            RuleFor(c => c.newUserTc).NotEmpty().NotNull().GreaterThan(0);
+            RuleFor(c => c.newUserTc).NotEmpty().NotNull().GreaterThan(0).WithMessage("Id sıfırdan büyük olmalı.");
         }
     }
 }

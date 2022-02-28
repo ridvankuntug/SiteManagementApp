@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Queries.GetUser
     {
         public GetUserByNameValidator()
         {
-            RuleFor(c => c.newUserName).NotEmpty().NotNull().MaximumLength(30);
+            RuleFor(c => c.newUserName).NotEmpty().NotNull().MaximumLength(30).WithMessage("Id sıfırdan büyük olmalı.");
         }
     }
 }

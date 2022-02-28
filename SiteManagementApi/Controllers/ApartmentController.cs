@@ -107,7 +107,7 @@ namespace SiteManagementApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        //Artık Id ile çalılşıyor
         //[HttpPut("ChangeApartmentBy/{block}/{floor}/{no}")]
         //public IActionResult ChangeApartment(string block, int floor, int no, [FromBody] ChangeApartmentModel newApartment)
         //{
@@ -138,7 +138,6 @@ namespace SiteManagementApi.Controllers
             {
                 ChangeApartmentCommand command = new ChangeApartmentCommand(_dataBase);
                 command.newApartmentId = id;
-
                 command.Model = newApartment;
                 ChangeApartmentValidator validator = new ChangeApartmentValidator();
                 validator.ValidateAndThrow(command);

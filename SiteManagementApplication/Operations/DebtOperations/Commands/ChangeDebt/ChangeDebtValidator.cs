@@ -11,11 +11,11 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.ChangeDeb
     {
         public ChangeDebtValidator()
         {
-            RuleFor(d => d.newDebtId).NotEmpty().GreaterThan(0);
-            RuleFor(d => d.Model.DebtBill).NotNull().LessThanOrEqualTo(9999);
-            RuleFor(d => d.Model.DebtDue).NotNull().LessThanOrEqualTo(9999);
-            RuleFor(d => d.Model.DebtYear).NotNull().LessThanOrEqualTo(9999);
-            RuleFor(d => d.Model.DebtMonth).NotNull().LessThanOrEqualTo(12);
+            RuleFor(d => d.newDebtId).NotEmpty().GreaterThan(0).WithMessage("Id 0 dan büyük olmalı.");
+            RuleFor(d => d.Model.DebtBill).NotNull().LessThanOrEqualTo(9999).WithMessage("Fatura 9999 dan büyük olamaz.");
+            RuleFor(d => d.Model.DebtDue).NotNull().LessThanOrEqualTo(9999).WithMessage("Aidat 9999 dan büyük olamaz.");
+            RuleFor(d => d.Model.DebtYear).NotNull().LessThanOrEqualTo(9999).WithMessage("Yıl 9999 dan büyük olamaz.");
+            RuleFor(d => d.Model.DebtMonth).NotNull().LessThanOrEqualTo(12).WithMessage("Ay 12 den büyük olamaz.");
             RuleFor(d => d.Model.IsPaid).NotNull();
         }
     }

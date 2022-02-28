@@ -168,14 +168,17 @@ namespace SiteManagementApi.Controllers
             {
                 //Evsahiplerine aidatlarını paylaştırmak için daireleri çekiyoruz
                 GetAllApartmentQuery query = new GetAllApartmentQuery(_dataBase, _mapper);
+                //Boş olmayan dairelerin Id lerini alıyoruz
                 var apartment = query.Handle().FindAll(c => c.User_Id is not null);
 
                 AddDebtCommand addDebt = new AddDebtCommand(_dataBase, _mapper);
                 AddDebtValidator validationRules = new AddDebtValidator();
                 addDebt.Model = newDebt;
+                //Toplam iadatı ve faturayı daire sayısına bölüyoruz
                 float due = newDebt.DebtDue / apartment.Count;
                 float bill = newDebt.DebtBill / apartment.Count;
 
+                //dolu dairelerin sahiplerine borçlarını kaydediyoruz
                 foreach (var item in apartment)
                 {
                     addDebt.Model.DebtDue = due;

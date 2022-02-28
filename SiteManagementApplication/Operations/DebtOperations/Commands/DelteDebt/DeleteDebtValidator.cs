@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.DelteDebt
     {
         public DeleteDebtValidator()
         {
-            RuleFor(c => c.newDebtId).NotNull().GreaterThanOrEqualTo(1);
+            RuleFor(c => c.newDebtId).NotNull().GreaterThan(0).WithMessage("Id 0 dan büyük olmalı.");
         }
     }
 }

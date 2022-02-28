@@ -7,9 +7,9 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
     {
         public GetApartmentByAdressValidator()
         {
-            RuleFor(c => c.newApartmentBlock).NotEmpty().NotNull().MinimumLength(1).MaximumLength(3);
-            RuleFor(c => c.newApartmentFloor).NotEmpty().NotNull().GreaterThan(0).LessThan(99);
-            RuleFor(c => c.newApartmentNo).NotEmpty().NotNull().GreaterThan(0).LessThan(999);
+            RuleFor(c => c.newApartmentBlock).NotEmpty().NotNull().MinimumLength(1).MaximumLength(3).WithMessage("Blok boş bırakılamaz.");
+            RuleFor(c => c.newApartmentFloor).NotEmpty().NotNull().GreaterThan(0).LessThan(99).WithMessage("Blok boş bırakılamaz.");
+            RuleFor(c => c.newApartmentNo).NotEmpty().NotNull().GreaterThan(0).LessThan(999).WithMessage("Daire no 0 ile 999 arasında olmalı.");
         }
     }
 }

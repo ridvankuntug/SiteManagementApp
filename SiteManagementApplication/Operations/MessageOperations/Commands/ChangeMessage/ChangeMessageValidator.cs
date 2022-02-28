@@ -11,8 +11,8 @@ namespace SiteManagementApplication.Operations.MessageOperations.Commands.Change
     {
         public ChangeMessageValidator()
         {
-            RuleFor(m => m.newMessageId).NotEmpty();
-            RuleFor(m => m.Model.MessageText).MaximumLength(999);
+            RuleFor(m => m.newMessageId).NotEmpty().WithMessage("Id boş olamaz.");
+            RuleFor(m => m.Model.MessageText).MaximumLength(999).WithMessage("Mesaj 999 karakterden fazla olamaz.");
         }
     }
 }

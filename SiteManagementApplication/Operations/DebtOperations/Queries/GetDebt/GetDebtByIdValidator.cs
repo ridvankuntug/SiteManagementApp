@@ -11,7 +11,6 @@ namespace SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt
     {
         public GetDebtByIdValidator()
         {
-            RuleFor(c => c.newDebtId).NotEmpty().NotNull().GreaterThan(0);
-        }
+            RuleFor(c => c.newDebtId).NotEmpty().NotNull().GreaterThan(0).WithMessage("Id 0dan büyük olmalı")
     }
 }

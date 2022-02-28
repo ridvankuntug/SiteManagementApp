@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.ChangeDeb
     {
         public PayDebtValidator()
         {
-                RuleFor(d => d.newDebtId).NotEmpty().GreaterThan(0);
+                RuleFor(d => d.newDebtId).NotEmpty().GreaterThan(0).WithMessage("Id 0dan büyük olmalı");
         }
     }
 }
