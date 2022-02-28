@@ -37,82 +37,87 @@ Tc 11 haneli, telefon 10 haneli olmalı, Şifre 6 karakter yada daha uzun olmal�
 <h4>Site Management Api:</h4>
 <h4>Apartment</h4>
 
-GET ​/Api​/Apartments​/GetAllApartment :(Admin) Girdi almadan bütün kayıtlı aprtmanları getirir.
+GET /Api/Apartments/GetAllApartment :(Admin) Girdi almadan bütün kayıtlı aprtmanları getirir.
 
-GET ​/Api​/Apartments​/GetApartmentBy​/{id} :(Admin) Apartmanlar tablosunun id değeri ile eşleşen apartmanın detaylarını getirir.
+GET /Api/Apartments/GetApartmentBy/{id} :(Admin) Apartmanlar tablosunun id değeri ile eşleşen apartmanın detaylarını getirir.
 
-GET ​/Api​/Apartments​/GetApartmentBy​/{block}​/{floor}​/{no} :(Admin) Adres bilgileri girilen apartmanın detaylarınını getirir.
+GET /Api/Apartments/GetApartmentBy/{block}/{floor}/{no} :(Admin) Adres bilgileri girilen apartmanın detaylarınını getirir.
 
-POST ​/Api​/Apartments​/AddApartment :(Admin) Girilen bilgiler ile yeni bir apartman dairesi ekler.
+POST /Api/Apartments/AddApartment :(Admin) Girilen bilgiler ile yeni bir apartman dairesi ekler.
 
-PUT ​/Api​/Apartments​/ChangeApartmentBy​/{id} :(Admin) Kayıtlıu bir apartmanı düzenlemek için kullanılır. Not: Daireye kullanıcı burada tanımlanır.
+PUT /Api/Apartments/ChangeApartmentBy/{id} :(Admin) Kayıtlıu bir apartmanı düzenlemek için kullanılır. Not: Daireye kullanıcı burada tanımlanır.
 
-DELETE ​/Api​/Apartments​/DeleteApartmentBy​/{block}​/{floor}​/{no} :(Admin) Id'si girilen bir daireyi siler.
+DELETE /Api/Apartments/DeleteApartmentBy/{block}/{floor}/{no} :(Admin) Id'si girilen bir daireyi siler.
+
 
 <h4>Debt</h4>
 
-GET ​/Api​/Debts​/GetAllDebt​/{paidCheck} :(Admin) Bütün borçları döndürür, eğer paidCheck "true" ise ödenmemiş faturaları döndürür.
+GET /Api/Debts/GetAllDebt/{paidCheck} :(Admin) Bütün borçları döndürür, eğer paidCheck "true" ise ödenmemiş faturaları döndürür.
 
-GET ​/Api​/Debts​/GetDebtBy​/{id} :(Admin, User) Id'si girilen faturayı döndürür
+GET /Api/Debts/GetDebtBy/{id} :(Admin, User) Id'si girilen faturayı döndürür
 
-GET ​/Api​/Debts​/GetDebtByUser​/{id}​/{paidCheck} :(Admin, User) Id'si girilen kullanıcının bütün faturalarını döndürür, eğer paidCheck "true" ise ödenmemiş faturaları döndürür.
+GET /Api/Debts/GetDebtByUser/{id}/{paidCheck} :(Admin, User) Id'si girilen kullanıcının bütün faturalarını döndürür, eğer paidCheck "true" ise ödenmemiş faturaları döndürür.
 
-GET ​/Api​/Debts​/GetDebtBy​/{debtMonth}​/{debtYear}​/{paidCheck} :(Admin, User) Belirtilen dönemin bütün faturalarını getirir, eğer paidCheck "true" ise ödenmemiş faturaları döndürür.
+GET /Api/Debts/GetDebtBy/{debtMonth}/{debtYear}/{paidCheck} :(Admin, User) Belirtilen dönemin bütün faturalarını getirir, eğer paidCheck "true" ise ödenmemiş faturaları döndürür.
 
-GET ​/Api​/Debts​/GetDebtByUser​/{id}​/With​/{debthMonth}​/{debtYear}​/{paidCheck} :(Admin, User) Bir kullanıcının belirtilen dönemdeki faturayı ödeyip ödemediğini kontrol eder. 
+GET /Api/Debts/GetDebtByUser/{id}/With/{debthMonth}/{debtYear}/{paidCheck} :(Admin, User) Bir kullanıcının belirtilen dönemdeki faturayı ödeyip ödemediğini kontrol eder. 
 
-POST ​/Api​/Debts​/AddDebt :(Admin) Yöneticinin Aylık borç bilgilerini tek tek girmesini sağlar
+POST /Api/Debts/AddDebt :(Admin) Yöneticinin Aylık borç bilgilerini tek tek girmesini sağlar
 
-POST ​/Api​/Debts​/AddDebtToAll :(Admin) Yöneticinin Aylık borç bilgilerini girmesini sağlar. Girilen tutar, dolu dairelerin sayısına bölünerek paylaştırılır.
+POST /Api/Debts/AddDebtToAll :(Admin) Yöneticinin Aylık borç bilgilerini girmesini sağlar. Girilen tutar, dolu dairelerin sayısına bölünerek paylaştırılır.
 
-PUT ​/Api​/Debts​/ChangeDebtBy​/{id} :(Admin) Tek bir borç bilgisinin düzenlenmesini sağlar.
+PUT /Api/Debts/ChangeDebtBy/{id} :(Admin) Tek bir borç bilgisinin düzenlenmesini sağlar.
 
-PUT ​/Api​/Debts​/PayDebtBy​/{id} :(Admin, User) Girilen Id deki faturayıödenmiş işaretler. (Test amaçlı ve alt komutları normal ödeme yönteminde kullanılıyor)
+PUT /Api/Debts/PayDebtBy/{id} :(Admin, User) Girilen Id deki faturayıödenmiş işaretler. (Test amaçlı ve alt komutları normal ödeme yönteminde kullanılıyor)
 
-DELETE ​/Api​/Debts​/DeleteDebtBy​/{id} :(Admin) Kayıtlı bir faturayı siler.
+DELETE /Api/Debts/DeleteDebtBy/{id} :(Admin) Kayıtlı bir faturayı siler.
+
 
 <h4>Message</h4>
 
-GET ​/Api​/Messages​/GetAllMessage :(Admin, User) Bütün mesajları listeler.
+GET /Api/Messages/GetAllMessage :(Admin, User) Bütün mesajları listeler.
 
-GET ​/Api​/Messages​/GetMessageBy​/{id} :(Admin, User) Girilen Idye sahip  mesajı getirir
+GET /Api/Messages/GetMessageBy/{id} :(Admin, User) Girilen Idye sahip  mesajı getirir
 
-GET ​/Api​/Messages​/GetMessageByReciver​/{id} :(Admin, User) Gelen mesajlarınızı görmek için
+GET /Api/Messages/GetMessageByReciver/{id} :(Admin, User) Gelen mesajlarınızı görmek için
 
-GET ​/Api​/Messages​/GetMessageBySender​/{senderId}​/AndReciver​/{reciverid} :(Admin, User) Belirli bir kişi ile görüşmelerinizi filtrelemek için
+GET /Api/Messages/GetMessageBySender/{senderId}/AndReciver/{reciverid} :(Admin, User) Belirli bir kişi ile görüşmelerinizi filtrelemek için
 
-GET ​/Api​/Messages​/GetMessageBySender​/{id} :(Admin, User)  Giden mesajlarınızı görmek için
+GET /Api/Messages/GetMessageBySender/{id} :(Admin, User)  Giden mesajlarınızı görmek için
 
-POST ​/Api​/Messages​/AddMessage :(Admin, User) Yeni bir mesaj göndermek için (Alıcının ve göndericinin Id'si manuel belirtilmeli, yetiştiremedim)
+POST /Api/Messages/AddMessage :(Admin, User) Yeni bir mesaj göndermek için (Alıcının ve göndericinin Id'si manuel belirtilmeli, yetiştiremedim)
 
-PUT ​/Api​/Messages​/ChangeMessagenBy​/{id} :(Admin, User) Bir mesaj henüz okunmadı ise düzenleyebilmek için
+PUT /Api/Messages/ChangeMessagenBy/{id} :(Admin, User) Bir mesaj henüz okunmadı ise düzenleyebilmek için
 
-PUT ​/Api​/Messages​/ReadMessage​/{id} :(Admin, User) Mesajı okundu olarak işaretlemek için
+PUT /Api/Messages/ReadMessage/{id} :(Admin, User) Mesajı okundu olarak işaretlemek için
 
-DELETE ​/Api​/Messages​/DeleteMessageBy​/{id} :(Admin, User) Mesajı silmek için
+DELETE /Api/Messages/DeleteMessageBy/{id} :(Admin, User) Mesajı silmek için
+
 
 <h4>PayDebt</h4>
 
-GET ​/Api​/PayDebts​/PayDebt :() 
+GET /Api/PayDebts/PayDebt :(Admin, User) Tc kimlik numarası girilen kullanıcının belirtilen dönem borcunu ödemek için ödeme APIsine bağlanır
 
-GET ​/Api​/PayDebts​/PayDebtBy​/{id}​/{cardNumber}​/{exYear}​/{exMonth}​/{ccv} :() 
+GET /Api/PayDebts/PayDebtBy/{id}/{cardNumber}/{exYear}/{exMonth}/{ccv} :(Admin, User) IDsi girilen kullanıcının belirtilen dönem borcunu ödemek için ödeme APIsine bağlanır 
 
-User
 
-GET ​/Api​/Users​/LoginUser​/{userName}​/{password} :() 
 
-GET ​/Api​/Users​/Seed :() 
+<h4>User</h4>
 
-GET ​/Api​/Users​/GetAllUser :() 
+GET /Api/Users/LoginUser/{userName}/{password} :(AllowAnonymous) Oturum açmamış kullanıcının oturum açmasını sağlar 
 
-GET ​/Api​/Users​/GetUserBy​/{id} :() 
+GET /Api/Users/Seed :(AllowAnonymous) Sistem ilk defa kullanılırken varsayılan admin ve bir kullancı oluşturmak için kullanılır
 
-GET ​/Api​/Users​/GetUserByTc​/{tc} :() 
+GET /Api/Users/GetAllUser :(Admin, User) Bütün kullanıcıları listeler
 
-GET ​/Api​/Users​/GetUserByName​/{name} :() 
+GET /Api/Users/GetUserBy/{id} :(Admin, User) ID'si girilen kullanıcıyı getirir
 
-POST ​/Api​/Users​/AddUser :() 
+GET /Api/Users/GetUserByTc/{tc} :(Admin, User) TC'si girilen kullanıcıyı getirir
 
-PUT ​/Api​/Users​/ChangeUserBy​/{id} :() 
+GET /Api/Users/GetUserByName/{name} :(Admin, User) İsminin bir kısmı eşleşen kullanıcıları listeler
 
-DELETE ​/Api​/Users​/DeleteUserBy​/{id} :() 
+POST /Api/Users/AddUser :(Admin) Yeni kullanıcı oluşturma
+
+PUT /Api/Users/ChangeUserBy/{id} :(Admin, User) Kullanıcı değiştirmek için. (Burada her kullanıcının yalnızca kendisini değiştirmesi için doğrulama yapılmalı)
+
+DELETE /Api/Users/DeleteUserBy/{id} :(Admin) Kullanıcı silmek için. 
