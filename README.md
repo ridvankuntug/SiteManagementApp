@@ -5,11 +5,12 @@ Proje ilk açıldığında  app-migration ile update-database uygulanacağı sı
 İlk kullanımda Admin ve User oluşturmak için GET "https://localhost:6001/Api/Users/Seed" requesti çalıştırılmalı.
 
 Frontend bilgim yeterli olmadığı için arayüzde validation uygulamadım ve yanlış değerlerde uygulama çıktı vermek yerine hata veriyor bu sorun Swagger ve Postmande oluşmuyor.
-|Seed ile üretilen kullanıcılar.|
-|-------------------------------|
+<br><br>
+Seed ile üretilen kullanıcılar:
+
 |Kullanıcı adı:  | Şifre:       |
-|-------------------------------|
+|----------------|--------------|
 |Admin           | 123546       |
-|-------------------------------|
+|----------------|--------------|
 |User            | 123546       |
-|-------------------------------|
+|----------------|--------------|
