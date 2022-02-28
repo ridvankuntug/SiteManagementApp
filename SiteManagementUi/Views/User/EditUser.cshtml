@@ -1,4 +1,4 @@
-﻿@model SiteManagementUi.Models.UserModels.GetUserModel
+﻿@model SiteManagementUi.Models.UserModels.ChangeUserModel
 
 @{
     ViewData["Title"] = "EditUser";
@@ -37,9 +37,19 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="UserVehicle" class="control-label"></label>
                 <input asp-for="UserVehicle" class="form-control" />
                 <span asp-validation-for="UserVehicle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PasswordHash" class="control-label"></label>
+                <input asp-for="PasswordHash" class="form-control" />
+                <span asp-validation-for="PasswordHash" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">

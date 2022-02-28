@@ -33,8 +33,9 @@
                                 Apartments
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="GetAllApartment">GetAllApartment</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="AddApartment">AddApartment</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="ChangeApartment">ChangeApartment</a>                                
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
@@ -51,14 +52,6 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetPaidDebtByPeriod">GetPaidDebtByPeriod</a>
                             </div>
-                        </li><li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Users
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="GetAllUser">GetAllUser</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,6 +61,16 @@
                                 <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageByReciverId">GetMessageByReciverId</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageBySenderId">GetMessageBySenderId</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="PlaceHolder">PlaceHolder</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Users
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="GetAllUser">GetAllUser</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="AddUser">AddUser</a>
+                                <div class="dropdown-divider"></div>
                             </div>
                         </li>
                     </ul>

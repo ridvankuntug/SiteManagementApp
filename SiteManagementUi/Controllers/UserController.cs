@@ -12,11 +12,36 @@ namespace SiteManagementUi.Controllers
             List<GetUserModel> userModel = UserService.GetAllUsers();
             return View(userModel);
         }
-        [Route("EditUser/{id}")]
+
+        public IActionResult AddUser(ChangeUserModel userModel)
+        {
+            if (userModel.UserName is null) { return View(); }
+            UserService.PostUser(userModel);
+            return View();
+        }
+
         public IActionResult EditUser(int id)
         {
+            //TODO: AutoMapper kullan
             GetUserModel userModel = UserService.GetUser(id);
-            return View(userModel);
+            ChangeUserModel changeUserModel = new ChangeUserModel();
+            changeUserModel.Id = userModel.Id;
+            changeUserModel.UserName = userModel.UserName;
+            changeUserModel.UserFullName = userModel.UserFullName;
+            changeUserModel.UserTc = userModel.UserTc;
+            changeUserModel.Email = userModel.Email;
+            changeUserModel.PhoneNumber = userModel.PhoneNumber;
+            changeUserModel.UserVehicle = userModel.UserVehicle;
+            changeUserModel.PasswordHash = "";
+            changeUserModel.IsAdmin = userModel.IsAdmin;
+            
+            return View(changeUserModel);
+        }
+        [HttpPost]
+        public IActionResult EditUser(ChangeUserModel userModel)
+        {
+            UserService.PutUser(userModel.Id, userModel);
+            return View();
         }
     }
 }

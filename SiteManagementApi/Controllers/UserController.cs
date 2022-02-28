@@ -136,6 +136,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPost("AddUser")]
+        [AllowAnonymous]
         public IActionResult AddUser([FromBody] AddUserModel newUser)
         {
             try
@@ -146,7 +147,7 @@ namespace SiteManagementApi.Controllers
                 addUser.Model = newUser;
                 validationRules.ValidateAndThrow(addUser);
                 addUser.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -156,18 +157,18 @@ namespace SiteManagementApi.Controllers
 
         [HttpPut("ChangeUserBy/{id}")]
         [AllowAnonymous]
-        public IActionResult ChangeUser(int id, [FromBody] ChangeUserModel newApartment)
+        public IActionResult ChangeUser(int id, [FromBody] ChangeUserModel newUser)
         {
             try
             {
                 ChangeUserCommand command = new ChangeUserCommand(_dataBase);
                 command.newUserId = id;
 
-                command.Model = newApartment;
+                command.Model = newUser;
                 ChangeUserValidator validator = new ChangeUserValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -186,7 +187,7 @@ namespace SiteManagementApi.Controllers
                 DeleteUserValidator validator = new DeleteUserValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {

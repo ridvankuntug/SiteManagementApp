@@ -103,15 +103,35 @@ namespace SiteManagementApi.Controllers
             }
         }
 
-        [HttpPut("ChangeApartmentBy/{block}/{floor}/{no}")]
-        public IActionResult ChangeApartment(string block, int floor, int no, [FromBody] ChangeApartmentModel newApartment)
+        //[HttpPut("ChangeApartmentBy/{block}/{floor}/{no}")]
+        //public IActionResult ChangeApartment(string block, int floor, int no, [FromBody] ChangeApartmentModel newApartment)
+        //{
+        //    try
+        //    {
+        //        ChangeApartmentCommand command = new ChangeApartmentCommand(_dataBase);
+        //        command.newApartmentBlock = block;
+        //        command.newApartmentFloor = floor;
+        //        command.newApartmentNo = no;
+
+        //        command.Model = newApartment;
+        //        ChangeApartmentValidator validator = new ChangeApartmentValidator();
+        //        validator.ValidateAndThrow(command);
+        //        command.Handle();
+        //        return Ok(true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
+        [HttpPut("ChangeApartmentBy/{id}")]
+        public IActionResult ChangeApartment(int id, [FromBody] ChangeApartmentModel newApartment)
         {
             try
             {
                 ChangeApartmentCommand command = new ChangeApartmentCommand(_dataBase);
-                command.newApartmentBlock = block;
-                command.newApartmentFloor = floor;
-                command.newApartmentNo = no;
+                command.newApartmentId = id;
 
                 command.Model = newApartment;
                 ChangeApartmentValidator validator = new ChangeApartmentValidator();
@@ -138,7 +158,7 @@ namespace SiteManagementApi.Controllers
                 DeleteApartmentValidator validator = new DeleteApartmentValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {

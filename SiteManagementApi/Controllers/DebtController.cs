@@ -198,7 +198,7 @@ namespace SiteManagementApi.Controllers
                 ChangeDebtValidator validator = new ChangeDebtValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -217,7 +217,7 @@ namespace SiteManagementApi.Controllers
                 PayDebtValidator validator = new PayDebtValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
@@ -236,7 +236,7 @@ namespace SiteManagementApi.Controllers
                 DeleteDebtValidator validator = new DeleteDebtValidator();
                 validator.ValidateAndThrow(command);
                 command.Handle();
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
