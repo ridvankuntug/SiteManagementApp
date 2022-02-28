@@ -121,3 +121,26 @@ POST /Api/Users/AddUser :(Admin) Yeni kullanıcı oluşturma
 PUT /Api/Users/ChangeUserBy/{id} :(Admin, User) Kullanıcı değiştirmek için. (Burada her kullanıcının yalnızca kendisini değiştirmesi için doğrulama yapılmalı)
 
 DELETE /Api/Users/DeleteUserBy/{id} :(Admin) Kullanıcı silmek için. 
+
+<h3>PaymentApi</h3>
+
+<h4>CreditCard</h4>
+GET /api/CreditCard : Kredikartlarını listeler.
+POST /api/CreditCard : Yeni kredikartı ekler.
+GET /api/CreditCard/{id} : Girilen ID'li kredikartını getirir.
+PUT /api/CreditCard/{id} : Girilen ID'li kredikartını düzenler.
+DELETE /api/CreditCard/{id} : Girilen ID'li kredikartını siler.
+GET /api/CreditCard/{cardNumber} : Girilen numara ile eşleşen kredikartını getirir.
+PUT /api/CreditCard/{cardNumber} : Girilen numara ile eşleşen kredikartını düzenler.
+
+<h4>Payment</h4>
+GET /api/Payment/{cardNumber}/{exYear}/{exMonth}/{ccv}/{debt}  : Kart bilgileri doğru ise ödemeye onay verir ve bakiyeden miktarı düşer.
+POST /api/Payment/{cardNumber}/{addBalance} : Karta bakiye yükler.
+
+<h4>PaymentHistory</h4>
+GET /api/PaymentHistory : Ödeme geçmişini listeler.
+POST /api/PaymentHistory : Ödeme geçmişine kayıt ekler.
+GET /api/PaymentHistory/{id} : Belirli bir  ödeme bilgisini getirir.
+PUT /api/PaymentHistory/{id} : Belirli bir ödemeyi düzenler.
+DELETE /api/PaymentHistory/{id} : Belirli bir ödemeyi siler.
+GET /api/PaymentHistory/{cardNumber} : girilen numaralı ödeme bilgisini getirir.
