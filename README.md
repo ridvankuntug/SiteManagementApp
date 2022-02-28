@@ -1,4 +1,4 @@
-Innova .Net Patika Bootcamp Bitirme projesi.</h4>
+<h3>Innova .Net Core Patika Bootcamp Bitirme projesi.</h3>
 
 Proje ilk açıldığında  app-migration ile update-database uygulanacağı sırada varsayılan proje SiteManagementApi olmalı, normal çalışma zamanında ise SiteManagementApi, PaymentApi ve SiteManagement Api başlangıç projesi olarak seçili olmalı. 
 
