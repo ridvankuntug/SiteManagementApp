@@ -71,7 +71,7 @@ PUT ​/Api​/Debts​/PayDebtBy​/{id} :(Admin, User) Girilen Id deki faturay
 
 DELETE ​/Api​/Debts​/DeleteDebtBy​/{id} :(Admin) Kayıtlı bir faturayı siler.
 
-<h4>Message</<h4>h4>
+<h4>Message</h4>
 
 GET ​/Api​/Messages​/GetAllMessage :(Admin, User) Bütün mesajları listeler.
 
