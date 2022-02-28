@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiteManagementApplication.Operations.DebtOperations.Commands.ChangeDebt;
 using SiteManagementApplication.Operations.DebtOperations.Queries.GetDebt;
@@ -12,6 +13,7 @@ namespace SiteManagementApi.Controllers
 {
     [ApiController]
     [Route("Api/[controller]s")]
+    [Authorize]
     public class PayDebtController : ControllerBase
     {
         // HttpClient is intended to be instantiated once per application, rather than per-use. See Remarks.
@@ -28,6 +30,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("PayDebt")]
+        [Authorize(Roles = "admin, user")]
         public async Task<string> PayDebt(long cardNumber, int exYear, int exMonth, int ccv, long userTc, int debtMonth, int debtYear)
         {
             // Uzak sunucuya gittiğimiz için asenkron metod kullanıyoruz
@@ -91,6 +94,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("PayDebtBy/{id}/{cardNumber}/{exYear}/{exMonth}/{ccv}")]
+        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> PayDebtById(int id, long cardNumber, int exYear, int exMonth, int ccv)
         {
             // Uzak sunucuya gittiğimiz için asenkron metod kullanıyoruz

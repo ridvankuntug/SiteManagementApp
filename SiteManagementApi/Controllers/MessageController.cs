@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiteManagementApplication.Operations.MessageOperations.Commands.AddMessage;
 using SiteManagementApplication.Operations.MessageOperations.Commands.ChangeMessage;
@@ -12,6 +13,7 @@ namespace SiteManagementApi.Controllers
 {
     [ApiController]
     [Route("Api/[controller]s")]
+    [Authorize]
     public class MessageController : ControllerBase
     {
         private readonly ApplicationDbContext _dataBase;
@@ -24,6 +26,7 @@ namespace SiteManagementApi.Controllers
 
 
         [HttpGet("GetAllMessage")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetAllMessage()
         {
             try
@@ -41,6 +44,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetMessageBy/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetMessageById(int id)
         {
             try
@@ -62,6 +66,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetMessageByReciver/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetMessageByReciverId(int id)
         {
             try
@@ -83,6 +88,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetMessageBySender/{senderId}/AndReciver/{reciverid}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetMessageBySenderIdAndReciverId(int senderId, int reciverid)
         {
             try
@@ -105,6 +111,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetMessageBySender/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetMessageBySenderId(int id)
         {
             try
@@ -126,6 +133,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPost("AddMessage")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult AddMessage([FromBody] AddMessageModel newMessage)
         {
             try
@@ -145,6 +153,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPut("ChangeMessagenBy/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult ChangeMessage(int id, [FromBody] ChangeMessageModel newMessage)
         {
             try
@@ -165,6 +174,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPut("ReadMessage/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult ReadMessage(int id)
         {
             try
@@ -184,6 +194,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpDelete("DeleteMessageBy/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult DeleteMessage(int id)
         {
             try

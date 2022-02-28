@@ -10,21 +10,31 @@ using System.Threading.Tasks;
 
 namespace SiteManagementApplication.Operations.UserOperations.Commands.AddUser
 {
-    public class AddUserCommand
+    public class SeedUserCommand
     {
-        public AddUserModel Model { get; set; }
-
         private readonly ApplicationDbContext _dataBase;
         private readonly IMapper _mapper;
 
-        public AddUserCommand(ApplicationDbContext dataBase, IMapper mapper)
+        public SeedUserCommand(ApplicationDbContext dataBase, IMapper mapper)
         {
             _dataBase = dataBase;
             _mapper = mapper;
+
         }
 
         public void Handle()
         {
+            AddUserModel Model = new AddUserModel();
+
+            Model.IsAdmin = true;
+            Model.UserName = "User";
+            Model.UserFullName = "User User";
+            Model.Email = "user@user.com";
+            Model.UserTc = 12345678902;
+            Model.PhoneNumber = "1234567891";
+            Model.UserVehicle = "yok";
+            Model.PasswordHash = "123456";
+
             var user = _dataBase.Users.FirstOrDefault(x =>
                 x.UserName == Model.UserName ||
                 x.UserTc == Model.UserTc ||
@@ -43,8 +53,6 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.AddUser
             {
                 throw new InvalidOperationException("Bilgiler başka kullanıcı ile çakışıyor.");
             }
-
         }
-
     }
 }

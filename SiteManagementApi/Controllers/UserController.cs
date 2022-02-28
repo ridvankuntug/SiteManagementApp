@@ -26,8 +26,8 @@ namespace SiteManagementApi.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
         [HttpGet("LoginUser/{userName}/{password}")]
+        [AllowAnonymous]
         public IActionResult LoginUser(string userName, string password)
         {
             try
@@ -49,9 +49,36 @@ namespace SiteManagementApi.Controllers
             }
         }
 
-        [HttpGet("GetAllUser")]
+        [HttpGet("Seed")]
         [AllowAnonymous]
-        //[Authorize(Roles = "admin")]
+        public IActionResult Seed()
+        {
+            try
+            {
+                SeedAdminCommand admin = new SeedAdminCommand(_dataBase, _mapper);
+                admin.Handle();
+
+                SeedUserCommand user = new SeedUserCommand(_dataBase, _mapper);
+                user.Handle();
+
+                return Ok("|Admin ve user oluşturuldu.|\n" +
+                          "|--------------------------|\n" +
+                          "|Kullanıcı adı:| Şifre:    |\n" +
+                          "|--------------------------|\n" +
+                          "|Admin         | 123546    |\n" +
+                          "|--------------------------|\n" +
+                          "|User          | 123546    |\n" +
+                          "|--------------------------|\n");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAllUser")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetAllUser()
         {
             try
@@ -69,7 +96,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetUserBy/{id}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetUserBy(int id)
         {
             try
@@ -91,7 +118,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetUserByTc/{tc}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetUserByTc(long tc)
         {
             try
@@ -113,8 +140,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetUserByName/{name}")]
-
-        [Authorize(Roles = "user")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetUserByName(string name)
         {
             try
@@ -136,7 +162,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPost("AddUser")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         public IActionResult AddUser([FromBody] AddUserModel newUser)
         {
             try
@@ -156,7 +182,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPut("ChangeUserBy/{id}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin, user")]
         public IActionResult ChangeUser(int id, [FromBody] ChangeUserModel newUser)
         {
             try
@@ -177,6 +203,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpDelete("DeleteUserBy/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteUser(int id)
         {
             try
