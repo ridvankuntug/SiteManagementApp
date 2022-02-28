@@ -35,7 +35,7 @@ Tc 11 haneli, telefon 10 haneli olmalı, Şifre 6 karakter yada daha uzun olmal�
 <h3>Requestler:</h3>
 
 <h4>Site Management Api:</h4>
-<h4>Apartment<h4>
+<h4>Apartment</h4>
 
 GET ​/Api​/Apartments​/GetAllApartment :(Admin) Girdi almadan bütün kayıtlı aprtmanları getirir.
 
