@@ -34,6 +34,17 @@ namespace SiteManagementUi.Controllers
             }
             return View();
         }
+        public IActionResult GetAllDebtByUserId()
+        {
+            List<GetAllDebtModel> debtModel = DebtService.GetDebtByUserId(UserService.Token.Id, false);
+            return View(debtModel);
+        }
+
+        public IActionResult GetNotPaidDebtByUserId()
+        {
+            List<GetAllDebtModel> debtModel = DebtService.GetDebtByUserId(UserService.Token.Id, true);
+            return View(debtModel);
+        }
 
         public IActionResult AddDebtToAll(float debtBill, float debtDue, int debtYear, int debtMonth)
         {
@@ -49,5 +60,17 @@ namespace SiteManagementUi.Controllers
             return View();
         }
 
+        public IActionResult PayDebt(int id)
+        {
+            PayDebtModel payDebtModel = new PayDebtModel();
+            payDebtModel.id = id;
+            return View(payDebtModel);
+        }
+        [HttpPost]
+        public IActionResult PayDebt(PayDebtModel debtModel)
+        {
+            DebtService.PayDebtById(debtModel);
+            return View();
+        }
     }
 }

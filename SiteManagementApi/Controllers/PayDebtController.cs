@@ -89,5 +89,54 @@ namespace SiteManagementApi.Controllers
                 return "\nException Caught! \n Message :{0} " + e.Message;
             }
         }
+
+        [HttpGet("PayDebtBy/{id}/{cardNumber}/{exYear}/{exMonth}/{ccv}")]
+        public async Task<IActionResult> PayDebtById(int id, long cardNumber, int exYear, int exMonth, int ccv)
+        {
+            // Uzak sunucuya gittiğimiz için asenkron metod kullanıyoruz
+            try
+            {
+
+                GetDebtByIdQuery debt = new GetDebtByIdQuery(_dataBase, _mapper);
+                debt.newDebtId = id;
+                GetDebtByIdValidator getDebtByUserIdValidator = new GetDebtByIdValidator();
+                getDebtByUserIdValidator.ValidateAndThrow(debt);
+                var debtObj = debt.Handle();
+
+                if (debtObj is null)
+                {
+                    return BadRequest("Ödenmemiş fatura bulunamadı");
+                }
+
+                string uri = "https://localhost:7001/api/Payment/"
+                    + cardNumber + "/"
+                    + exYear + "/"
+                    + exMonth + "/"
+                    + ccv + "/"
+                    + debtObj.DebtTotal
+                    + "?period=" + debtObj.DebtMonth + "-" + debtObj.DebtYear;
+
+                string responseBody = await _client.GetStringAsync(uri);
+
+                if (responseBody == "true")
+                {
+                    PayDebtCommand payDebt = new PayDebtCommand(_dataBase);
+                    payDebt.newDebtId = debtObj.DebtId;
+                    PayDebtValidator payDebtValidator = new PayDebtValidator();
+                    payDebtValidator.ValidateAndThrow(payDebt);
+                    payDebt.Handle();
+
+                    return Ok("İşlem Başarılı");
+                }
+                else
+                {
+                    return BadRequest("İşlem yapılamadı");
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                return BadRequest("\nException Caught! \n Message :{0} " + e.Message);
+            }
+        }
     }
 }

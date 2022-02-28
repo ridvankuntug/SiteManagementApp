@@ -1,0 +1,52 @@
+﻿@model SiteManagementUi.Models.DebtModels.PayDebtModel
+
+@{
+    ViewData["Title"] = "PayDebt";
+}
+
+<h1>PayDebt</h1>
+
+<h4>PayDebtModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PayDebt">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="id" class="form-control" />
+                <span type="hidden" asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cardNumber" class="control-label"></label>
+                <input asp-for="cardNumber" class="form-control" />
+                <span asp-validation-for="cardNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="exYear" class="control-label"></label>
+                <input asp-for="exYear" class="form-control" />
+                <span asp-validation-for="exYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="exMonth" class="control-label"></label>
+                <input asp-for="exMonth" class="form-control" />
+                <span asp-validation-for="exMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ccv" class="control-label"></label>
+                <input asp-for="ccv" class="form-control" />
+                <span asp-validation-for="ccv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Pay" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

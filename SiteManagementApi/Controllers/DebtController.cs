@@ -40,8 +40,8 @@ namespace SiteManagementApi.Controllers
             }
         }
 
-        [HttpGet("GetDebtById/{id}/{paidCheck}")]
-        public IActionResult GetDebtById(int id, bool paidCheck)
+        [HttpGet("GetDebtBy/{id}")]
+        public IActionResult GetDebtById(int id)
         {
             try
             {
@@ -49,7 +49,6 @@ namespace SiteManagementApi.Controllers
                 GetDebtByIdValidator validationRules = new GetDebtByIdValidator();
 
                 query.newDebtId = id;
-                query.newPaidCheck = paidCheck;
 
                 validationRules.ValidateAndThrow(query);
                 var debtObj = query.Handle();
@@ -62,7 +61,7 @@ namespace SiteManagementApi.Controllers
             }
         }
 
-        [HttpGet("GetDebtByUserId/{id}/{paidCheck}")]
+        [HttpGet("GetDebtByUser/{id}/{paidCheck}")]
         public IActionResult GetDebtByUserId(int id, bool paidCheck)
         {
             try

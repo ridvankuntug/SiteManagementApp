@@ -33,11 +33,11 @@ namespace SiteManagementUi.Services
         //    jsonData = WebApiService.GetSingle("getsingle", id).Result;
         //    return JsonConvert.DeserializeObject<Message>(jsonData);
         //}
-        //static public string PostMessage(AddMessageModel message)
-        //{
-        //    jsonData = WebApiService.Post<AddMessageModel>("Messages/AddMessage", message).Result;
-        //    return JsonConvert.DeserializeObject(jsonData).ToString();
-        //}
+        static public string PostMessage(AddMessageModel message)
+        {
+            jsonData = WebApiService.Post<AddMessageModel>("Messages/AddMessage", message).Result;
+            return JsonConvert.DeserializeObject(jsonData).ToString();
+        }
         //static public string PutMessage(string block, int floor, int no, ChangeMessageSenderModel message)
         //{
         //    jsonData = WebApiService.Put<ChangeMessageSenderModel>("Messages/ChangeMessageBy/"+block+"/"+floor+"/"+no , message).Result;
