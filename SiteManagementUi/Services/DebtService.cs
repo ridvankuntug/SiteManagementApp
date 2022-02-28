@@ -18,11 +18,16 @@ namespace SiteManagementUi.Services
             jsonData = WebApiService.GetAll("Debts/GetDebtBy/" + debtMonth + "/" + debtYear + "/" + paidCheck).Result;
             return JsonConvert.DeserializeObject<List<GetAllDebtModel>>(jsonData);
         }
-        //static public Debt GetDebt(int id)
-        //{
-        //    jsonData = WebApiService.GetSingle("getsingle", id).Result;
-        //    return JsonConvert.DeserializeObject<Debt>(jsonData);
-        //}
+        static public List<GetAllDebtModel> GetDebtByUserId(int id, bool paidCheck)
+        {
+            jsonData = WebApiService.GetAll("Debts/GetDebtByUser/" + id + "/" + paidCheck).Result;
+            return JsonConvert.DeserializeObject<List<GetAllDebtModel>>(jsonData);
+        }
+        static public GetAllDebtModel GetDebt(int id)
+        {
+            jsonData = WebApiService.GetSingle("Debts/GetDebtBy", id).Result;
+            return JsonConvert.DeserializeObject<GetAllDebtModel>(jsonData);
+        }
         static public string PostDebt(AddDebtToAllModel debt)
         {
             jsonData = WebApiService.Post<AddDebtToAllModel>("Debts/AddDebtToAll", debt).Result;
@@ -38,5 +43,11 @@ namespace SiteManagementUi.Services
         //    jsonData = WebApiService.Delete("delete", id).Result;
         //    return JsonConvert.DeserializeObject(jsonData).ToString();
         //}
+        static public string PayDebtById(PayDebtModel payDebtModel)
+        {
+            jsonData = WebApiService.GetAll("PayDebts/PayDebtBy/" + payDebtModel.id + "/" + 
+                payDebtModel.cardNumber+ "/" + payDebtModel.exYear + "/" + payDebtModel.exMonth + "/" + payDebtModel.ccv).Result;
+            return JsonConvert.DeserializeObject<string>(jsonData);
+        }
     }
 }

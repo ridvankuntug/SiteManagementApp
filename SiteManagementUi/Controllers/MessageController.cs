@@ -14,7 +14,7 @@ namespace SiteManagementUi.Controllers
         }
         public IActionResult GetMessageByReciverId()
         {
-            if(_id > 0)
+            if (_id > 0)
             {
                 List<GetMessageModel> getMessageModel = MessageService.GetMessageByReciverId(_id);
                 return View(getMessageModel);
@@ -36,6 +36,20 @@ namespace SiteManagementUi.Controllers
             MessageService.ReadMessage(id);
 
             return View();
+        }
+
+        public IActionResult AddMessage(AddMessageModel messageModel)
+        {
+            if (UserService.Token.Id > 0)
+            {
+                if (messageModel.MessageText is not null)
+                {
+                messageModel.Sender_Id = UserService.Token.Id;
+                MessageService.PostMessage(messageModel);
+                }
+                return View();
+            }
+            return RedirectToAction("Home");
         }
     }
 }
