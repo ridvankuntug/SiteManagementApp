@@ -14,3 +14,5 @@ Seed ile üretilen kullanıcılar:
 |----------------|--------------|
 |User            | 123546       |
 |----------------|--------------|
+
+Tc 11 haneli, telefon 10 haneli olmalı, Şifre 6 karakter yada daha uzun olmalı, ay 0 ile 12 arasında yıl ise en fazla 9999 omalıdır.
