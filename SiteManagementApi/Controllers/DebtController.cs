@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiteManagementApplication.Operations.ApartmentOperations.Queries.GetApatment;
 using SiteManagementApplication.Operations.DebtOperations.Commands.AddDebt;
@@ -13,6 +14,7 @@ namespace SiteManagementApi.Controllers
 {
     [ApiController]
     [Route("Api/[controller]s")]
+    [Authorize]
     public class DebtController : ControllerBase
     {
         private readonly ApplicationDbContext _dataBase;
@@ -24,6 +26,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetAllDebt/{paidCheck}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAllDebt(bool paidCheck)
         {
             try
@@ -41,6 +44,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetDebtBy/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetDebtById(int id)
         {
             try
@@ -62,6 +66,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetDebtByUser/{id}/{paidCheck}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetDebtByUserId(int id, bool paidCheck)
         {
             try
@@ -84,6 +89,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetDebtBy/{debtMonth}/{debtYear}/{paidCheck}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetDebtByPeriod(int debtMonth, int debtYear, bool paidCheck)
         {
             try
@@ -108,6 +114,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetDebtByUser/{id}/With/{debthMonth}/{debtYear}/{paidCheck}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult GetDebtByUserIdWithPeriod(int id, int debtMonth, int debtYear, bool paidCheck)
         {
             try
@@ -134,6 +141,7 @@ namespace SiteManagementApi.Controllers
 
 
         [HttpPost("AddDebt")]
+        [Authorize(Roles = "admin")]
         public IActionResult AddDebt([FromBody] AddDebtModel newDebt)
         {
             try
@@ -153,6 +161,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPost("AddDebtToAll")]
+        [Authorize(Roles = "admin")]
         public IActionResult AddDebtToAll([FromBody] AddDebtModel newDebt)
         {
             try
@@ -186,6 +195,7 @@ namespace SiteManagementApi.Controllers
 
 
         [HttpPut("ChangeDebtBy/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult ChangeDebt(int id, [FromBody] ChangeDebtModel newDebt)
         {
             try
@@ -206,6 +216,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPut("PayDebtBy/{id}")]
+        [Authorize(Roles = "admin, user")]
         public IActionResult PayDebt(int id)
         {
             try
@@ -225,6 +236,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpDelete("DeleteDebtBy/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteDebt(int id)
         {
             try

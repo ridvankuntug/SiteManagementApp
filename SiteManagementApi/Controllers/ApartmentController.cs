@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.AddApartment;
 using SiteManagementApplication.Operations.ApartmentOperations.Commands.ChangeApartment;
@@ -12,9 +13,9 @@ namespace SiteManagementApi.Controllers
 {
     [ApiController]
     [Route("Api/[controller]s")]
+    [Authorize]
     public class ApartmentController : ControllerBase
     {
-
         private readonly ApplicationDbContext _dataBase;
         private readonly IMapper _mapper;
         public ApartmentController(ApplicationDbContext dataBase, IMapper mapper)
@@ -24,6 +25,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetAllApartment")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetAllApartment()
         {
             try
@@ -41,6 +43,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetApartmentBy/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetApartmentById(int id)
         {
             try
@@ -62,6 +65,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpGet("GetApartmentBy/{block}/{floor}/{no}")]
+        [Authorize(Roles = "admin")]
         public IActionResult GetApartmentByAdress(string block, int floor, int no)
         {
             try
@@ -85,6 +89,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpPost("AddApartment")]
+        [Authorize(Roles = "admin")]
         public IActionResult AddApartment([FromBody] AddApartmentModel newApartment)
         {
             try
@@ -126,6 +131,7 @@ namespace SiteManagementApi.Controllers
         //}
 
         [HttpPut("ChangeApartmentBy/{id}")]
+        [Authorize(Roles = "admin")]
         public IActionResult ChangeApartment(int id, [FromBody] ChangeApartmentModel newApartment)
         {
             try
@@ -146,6 +152,7 @@ namespace SiteManagementApi.Controllers
         }
 
         [HttpDelete("DeleteApartmentBy/{block}/{floor}/{no}")]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteApartment(string block, int floor, int no)
         {
             try

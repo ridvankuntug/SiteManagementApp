@@ -26,6 +26,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.AddUser
         public void Handle()
         {
             var user = _dataBase.Users.FirstOrDefault(x =>
+                x.UserName == Model.UserName ||
                 x.UserTc == Model.UserTc ||
                 x.Email == Model.Email ||
                 x.PhoneNumber == Model.PhoneNumber);
