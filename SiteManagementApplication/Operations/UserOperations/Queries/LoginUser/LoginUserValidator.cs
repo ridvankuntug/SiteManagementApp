@@ -12,8 +12,8 @@ namespace SiteManagementApplication.Operations.UserOperations.Queries.LoginUser
         public LoginUserValidator()
         {
 
-            RuleFor(c => c.newUserName).NotEmpty().NotNull().MaximumLength(30);
-            RuleFor(c => c.newPassword).NotEmpty().NotNull().MaximumLength(30);
+            RuleFor(c => c.newUserName).NotEmpty().NotNull().MaximumLength(30).WithMessage("Kullanıcı adı 30 karakterden kısa olmalı.");
+            RuleFor(c => c.newPassword).NotEmpty().NotNull().MaximumLength(30).WithMessage("Şifre 30 karakterden kısa olmalı.");
         }
 
     }

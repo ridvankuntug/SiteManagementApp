@@ -33,6 +33,7 @@ namespace SiteManagementApplication.Mappings
             CreateMap<Debt, GetDebtModel>()
                 .ForMember(dest => dest.UserName, opt => opt
                     .MapFrom(src => src.User.UserFullName));
+            //Fatura bilgisi çekildiğinde fatura sahibinin de görünmesi için tabloları birleştiriyoruz
 
             //Message haritalamaları
             CreateMap<AddMessageModel, Message>();
@@ -41,7 +42,7 @@ namespace SiteManagementApplication.Mappings
                     .MapFrom(src => src.Sender_User.UserFullName))
                 .ForMember(dest => dest.ReciverName, opt => opt
                     .MapFrom(src => src.Reciver_User.UserFullName));
-
+            //Mesajların göndericisi va alıcısının kim olduğunun anlaşılmasını kolaylaştırıyoruz
         }
     }
 }

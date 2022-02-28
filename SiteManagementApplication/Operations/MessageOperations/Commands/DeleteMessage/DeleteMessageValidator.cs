@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Commands.Delete
     {
         public DeleteMessageValidator()
         {
-            RuleFor(c => c.newMessageId).NotNull().GreaterThan(0);
+            RuleFor(c => c.newMessageId).NotNull().GreaterThan(0).WithMessage("Id sıfırdan büyük olmalı.");
         }
     }
 }

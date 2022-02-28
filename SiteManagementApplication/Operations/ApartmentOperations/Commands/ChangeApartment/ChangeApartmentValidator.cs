@@ -11,9 +11,9 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Commands.Chan
     {
         public ChangeApartmentValidator()
         {
-            RuleFor(c => c.newApartmentId).NotNull();
+            RuleFor(c => c.newApartmentId).NotNull().WithMessage("Id boş geçilemez.");
 
-            RuleFor(c => c.Model.ApartmentType).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 3);
+            RuleFor(c => c.Model.ApartmentType).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 3).WithMessage("Apartman tipi 3 haneli olmalı. ör: 3+1.");
         }
     }
 }

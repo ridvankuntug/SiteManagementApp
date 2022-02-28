@@ -11,11 +11,11 @@ namespace SiteManagementApplication.Operations.DebtOperations.Commands.AddDebt
     {
         public AddDebtValidator()
         {
-            RuleFor(d => d.Model.DebtBill).NotNull().LessThanOrEqualTo(9999);
-            RuleFor(d => d.Model.DebtDue).NotNull().LessThanOrEqualTo(9999);
-            RuleFor(d => d.Model.DebtYear).NotNull().LessThanOrEqualTo(9999);
-            RuleFor(d => d.Model.DebtMonth).NotNull().LessThanOrEqualTo(12);
-            RuleFor(d => d.Model.User_Id).NotNull().LessThanOrEqualTo(9999);
+            RuleFor(d => d.Model.DebtBill).NotNull().LessThanOrEqualTo(9999).WithMessage("Fatura 9999 dan büyük olamaz.");
+            RuleFor(d => d.Model.DebtDue).NotNull().LessThanOrEqualTo(9999).WithMessage("Aidat 9999 dan büyük olamaz.");
+            RuleFor(d => d.Model.DebtYear).NotNull().LessThanOrEqualTo(9999).WithMessage("Yıl 9999 dan büyük olamaz.");
+            RuleFor(d => d.Model.DebtMonth).NotNull().LessThanOrEqualTo(12).WithMessage("Ay 12den büyük olamaz.");
+            RuleFor(d => d.Model.User_Id).NotNull().LessThanOrEqualTo(9999).WithMessage("User_Id 9999 dan büyük olamaz.");
             RuleFor(d => d.Model.IsPaid).NotNull();
         }
     }

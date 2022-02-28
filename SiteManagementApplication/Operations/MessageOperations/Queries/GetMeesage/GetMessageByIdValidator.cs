@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
     {
         public GetMessageByIdValidator()
         {
-            RuleFor(m => m.newMessageId).NotEmpty().GreaterThan(0);
+            RuleFor(m => m.newMessageId).NotEmpty().GreaterThan(0).WithMessage("Id sıfırdan büyük olmalı.");
         }
     }
 }

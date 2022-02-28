@@ -11,14 +11,14 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.ChangeUse
     {
         public ChangeUserValidator()
         {
-            RuleFor(c => c.newUserId).NotEmpty().NotNull().GreaterThan(0);
-            RuleFor(c => c.Model.UserName).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30);
-            RuleFor(c => c.Model.UserFullName).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30);
-            RuleFor(c => c.Model.UserTc.ToString()).NotNull().Length(11);
-            RuleFor(c => c.Model.Email).EmailAddress().When(e => !string.IsNullOrEmpty(e.Model.Email.Trim())).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30);
-            RuleFor(c => c.Model.PhoneNumber).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 10);
-            RuleFor(c => c.Model.PasswordHash).MaximumLength(50);
-            RuleFor(c => c.Model.UserVehicle).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 20);
+            RuleFor(c => c.newUserId).NotEmpty().NotNull().GreaterThan(0).WithMessage("Id boş olamaz");
+            RuleFor(c => c.Model.UserName).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30).WithMessage("Tamamen boş bırakın yada 30 karakterden kısa olsun.");
+            RuleFor(c => c.Model.UserFullName).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30).WithMessage("Tamamen boş bırakın yada 30 karakterden kısa olsun.");
+            RuleFor(c => c.Model.UserTc.ToString()).NotNull().Length(11).WithMessage("Tc 11 hane olmalı.");
+            RuleFor(c => c.Model.Email).EmailAddress().When(e => !string.IsNullOrEmpty(e.Model.Email.Trim())).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 30).WithMessage("Tamamen boş bırakın yada 30 karakterden kısa olsun.");
+            RuleFor(c => c.Model.PhoneNumber).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 10).WithMessage("Tamamen boş bırakın yada 10 karakterden kısa olsun.");
+            RuleFor(c => c.Model.PasswordHash).MaximumLength(90);
+            RuleFor(c => c.Model.UserVehicle).Must(t => t.Trim() == string.Empty || t.Trim().Length <= 20).WithMessage("Tamamen boş bırakın yada 20 karakterden kısa olsun.");
             RuleFor(c => c.Model.IsAdmin).NotNull();
         }
     }

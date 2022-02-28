@@ -12,8 +12,8 @@ namespace SiteManagementApplication.Operations.MessageOperations.Queries.GetMees
     {
         public GetMessageBySenderIdAndReciverIdValidator()
         {
-            RuleFor(m => m.newReciverId).NotEmpty().GreaterThan(0);
-            RuleFor(m => m.newSenderId).NotEmpty().GreaterThan(0);
+            RuleFor(m => m.newReciverId).NotEmpty().GreaterThan(0).WithMessage("Id sıfırdan büyük olmalı.");
+            RuleFor(m => m.newSenderId).NotEmpty().GreaterThan(0).WithMessage("Id sıfırdan büyük olmalı.");
         }
     }
 }

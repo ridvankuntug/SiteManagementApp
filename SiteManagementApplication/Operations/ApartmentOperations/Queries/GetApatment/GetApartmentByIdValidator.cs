@@ -7,7 +7,7 @@ namespace SiteManagementApplication.Operations.ApartmentOperations.Queries.GetAp
     {
         public GetApartmentByIdValidator()
         {
-            RuleFor(c => c.newApartmentId).NotEmpty().NotNull().GreaterThan(0);
+            RuleFor(c => c.newApartmentId).NotEmpty().NotNull().GreaterThan(0).WithMessage("Id boş yada 0 olamaz.");
         }
     }
 }

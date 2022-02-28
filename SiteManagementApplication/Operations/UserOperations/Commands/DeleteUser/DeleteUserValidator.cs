@@ -11,7 +11,7 @@ namespace SiteManagementApplication.Operations.UserOperations.Commands.DeleteUse
     {
         public DeleteUserValidator()
         {
-            RuleFor(c => c.newUserId).NotNull().GreaterThanOrEqualTo(1).LessThanOrEqualTo(9999);
+            RuleFor(c => c.newUserId).NotNull().GreaterThan(0).WithMessage("Id 0dan büyük olmalı.");
         }
     }
 }
