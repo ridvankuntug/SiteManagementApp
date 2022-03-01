@@ -25,59 +25,77 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Test" asp-action="Index">Test</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Apartments
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="GetAllApartment">GetAllApartment</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="AddApartment">AddApartment</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Debts
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="AddDebtToAll">AddDebtToAll</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllPaidDebt">GetAllPaidDebt</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllNotPaidDebt">GetAllNotPaidDebt</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetPaidDebtByPeriod">GetPaidDebtByPeriod</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllDebtByUserId">GetAllDebtByUserId</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetNotPaidDebtByUserId">GetNotPaidDebtByUserId</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Messages
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageByReciverId">GetMessageByReciverId</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageBySenderId">GetMessageBySenderId</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="AddMessage">Send Message</a>
+                        @if (UserService.Token is not null)//Token boş olduğunda hata almamak için önce token nesnesi oluşmuş mu diye kontrol ediyoruz
+                        {
+                            @if (UserService.Token.Role == "Admin")
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Apartments
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="GetAllApartment">GetAllApartment</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Apartment" asp-action="AddApartment">AddApartment</a>
+                                        <div class="dropdown-divider"></div>
+                                    </div>
+                                </li>
+                            }
+                            @if (UserService.Token.Role == "Admin" || UserService.Token.Role == "User")
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Debts
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @if (UserService.Token.Role == "Admin")
+                                        {
+                                            <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="AddDebtToAll">AddDebtToAll</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllPaidDebt">GetAllPaidDebt</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllNotPaidDebt">GetAllNotPaidDebt</a>
+                                            <div class="dropdown-divider"></div>
+                                        }
+                                        <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetPaidDebtByPeriod">GetPaidDebtByPeriod</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetAllDebtByUserId">GetAllDebtByUserId</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Debt" asp-action="GetNotPaidDebtByUserId">GetNotPaidDebtByUserId</a>
+                                    </div>
+                                </li>
+                            }
+                            @if (UserService.Token.Role == "Admin" || UserService.Token.Role == "User")
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Messages
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageByReciverId">GetMessageByReciverId</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="GetMessageBySenderId">GetMessageBySenderId</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Message" asp-action="AddMessage">Send Message</a>
 
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Users
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="GetAllUser">GetAllUser</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="AddUser">AddUser</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
-                        </li>
+                                    </div>
+                                </li>
+                            }
+                            @if (UserService.Token.Role == "Admin" || UserService.Token.Role == "User")
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Users
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="GetAllUser">GetAllUser</a>
+                                        @if (UserService.Token.Role == "Admin")
+                                        {
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="AddUser">AddUser</a>
+                                        }
+                                    </div>
+                                </li>
+                            }
+
+                        }
                     </ul>
                     <ul class="navbar-nav navbar-right">
                         @if (UserService.Token is null)
