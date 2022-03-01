@@ -46,17 +46,19 @@ namespace SiteManagementUi.Controllers
             return View(debtModel);
         }
 
-        public IActionResult AddDebtToAll(float debtBill, float debtDue, int debtYear, int debtMonth)
+        public IActionResult AddDebtToAll(AddDebtToAllModel debtModel)
         {
-            if (debtBill < 1) { return View(); }
+            if (debtModel.DebtBill < 1) { return View(); }
 
-            AddDebtToAllModel debtModel = new AddDebtToAllModel();
-            debtModel.DebtBill = debtBill;
-            debtModel.DebtDue = debtDue;
-            debtModel.DebtYear = debtYear;
-            debtModel.DebtMonth = debtMonth;
+            //AddDebtToAllModel debtModel = new AddDebtToAllModel();
+            //debtModel.DebtBill = debtBill;
+            //debtModel.DebtDue = debtDue;
+            //debtModel.DebtYear = debtYear;
+            //debtModel.DebtMonth = debtMonth;
 
             DebtService.PostDebt(debtModel);
+            ModelState.Clear();
+            debtModel = new AddDebtToAllModel();
             return View();
         }
 
