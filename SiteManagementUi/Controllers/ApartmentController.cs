@@ -13,17 +13,17 @@ namespace SiteManagementUi.Controllers
             return View(getApartmentModel);
         }
         //TODO: Model alacak şekilde değiştir
-        public IActionResult AddApartment(string apartmentBlock, int apartmentFloor, int apartmentNo, string apartmentType)
+        public IActionResult AddApartment(AddApartmentModel apartmentModel)
         {
-            if (apartmentBlock is null) { return View(); }
+            if (apartmentModel.ApartmentBlock is null) { return View(); }
 
-            AddApartmentModel apartmentModel = new AddApartmentModel();
-            apartmentModel.ApartmentBlock = apartmentBlock;
-            apartmentModel.ApartmentFloor = apartmentFloor;
-            apartmentModel.ApartmentNo = apartmentNo;
-            apartmentModel.ApartmentType = apartmentType;
+            //AddApartmentModel apartmentModel = new AddApartmentModel();
+            //apartmentModel.ApartmentBlock = apartmentBlock;
+            //apartmentModel.ApartmentFloor = apartmentFloor;
+            //apartmentModel.ApartmentNo = apartmentNo;
+            //apartmentModel.ApartmentType = apartmentType;
             ApartmentService.PostApartment(apartmentModel);
-            return View();
+            return View(apartmentModel = null);
         }
 
         //[Route("ChangeApaertment/{id}")]

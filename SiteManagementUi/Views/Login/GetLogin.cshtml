@@ -1,12 +1,12 @@
-﻿@model SiteManagementUi.Models.LoginModel
+﻿@using SiteManagementUi.Services
+@model SiteManagementUi.Models.LoginModel
 
 @{
     ViewData["Title"] = "GetLogin";
 }
+@if(UserService.Token is not null){<meta http-equiv="refresh" content="0; url=../Home" />}
+    <h1>Login</h1>
 
-<h1>GetLogin</h1>
-
-<h4>LoginModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
