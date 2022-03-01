@@ -23,7 +23,9 @@ namespace SiteManagementUi.Controllers
             //apartmentModel.ApartmentNo = apartmentNo;
             //apartmentModel.ApartmentType = apartmentType;
             ApartmentService.PostApartment(apartmentModel);
-            return View(apartmentModel = null);
+            ModelState.Clear();
+            apartmentModel = new AddApartmentModel();
+            return View(apartmentModel);
         }
 
         //[Route("ChangeApaertment/{id}")]
