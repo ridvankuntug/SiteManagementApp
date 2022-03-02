@@ -20,13 +20,21 @@ Seed ile üretilen kullanıcılar:
 
 Proje .Net Core ile; Entity Framework Code First yaklaşımı kullanılarak geliştirildi.
 <h3>Kullanılan Kütüphaneler:</h3>
+
 AutoMapper
+
 FluentValidation
+
 Microsoft.AspNetCore.Authentication
+
 Microsoft.EntityFrameworkCore
+
 Microsoft.EntityFrameworkCore.SqlServer
+
 Microsoft.Extensions.Identity.
+
 MongoDB.Driver
+
 Newtonsoft.Json
 
 
