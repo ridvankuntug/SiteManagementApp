@@ -7,7 +7,7 @@ Proje ilk açıldığında  app-migration ile update-database uygulanacağı sı
 İlk kullanımda Admin ve User oluşturmak için GET "https://localhost:6001/Api/Users/Seed" requesti çalıştırılmalı.
 Ödeme sistemi(PaymentApi) online sunucudaki MongoDb veritabanına bağlı olduğu için işlem yapılmadan kullanılabilir.
 
-Frontend bilgim yeterli olmadığı için arayüze validation eklemeyi yetiştiremedim ve yanlış değerlerde uygulama çıktı vermek yerine hata veriyor bu sorun Swagger ve Postmande oluşmuyor.
+API olarak tasarlandığı için frontend üzerinde fazla durulmadı ve sadece test amaçlı yazıldı, arayüzde hatalar olabilir.
 <br><br>
 Seed ile üretilen kullanıcılar:
 
